@@ -1,11 +1,13 @@
-package dat3.car.factories.cars;
+package dat3.car.config;
 
 import dat3.car.Entities.cars.Car;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarListAssembler {
+@Service
+public class CarBatchFactory {
     public List<Car> cars()
     {
         return new ArrayList<>() {

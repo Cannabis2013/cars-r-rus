@@ -1,7 +1,6 @@
 package dat3.car.config;
 
 import dat3.car.factories.cars.CarFactory;
-import dat3.car.factories.members.MemberFactory;
 import dat3.car.repository.CarRepository;
 import dat3.car.repository.MemberRepository;
 import org.springframework.boot.ApplicationArguments;
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DeveloperData implements ApplicationRunner {
-    public DeveloperData(MemberBatchFactory memberFactory, CarRepository carRepository, MemberRepository memberRepository, CarFactory carFactory) {
+    public DeveloperData(MemberBatchFactory memberFactory, CarRepository carRepository, MemberRepository memberRepository, CarBatchFactory carFactory) {
         this.memberFactory = memberFactory;
         this.carRepository = carRepository;
         this.memberRepository = memberRepository;
@@ -24,7 +23,7 @@ public class DeveloperData implements ApplicationRunner {
 
     private void initDatabase()
     {
-        var cars = carFactory.build();
+        var cars = carFactory.cars();
         var members = memberFactory.build();
         try {
             carRepository.saveAll(cars);
@@ -36,7 +35,7 @@ public class DeveloperData implements ApplicationRunner {
     }
 
     private final MemberBatchFactory memberFactory;
-    private final CarRepository carRepository;
     private final MemberRepository memberRepository;
-    private final CarFactory carFactory;
+    private final CarRepository carRepository;
+    private final CarBatchFactory carFactory;
 }

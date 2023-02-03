@@ -4,21 +4,13 @@ import dat3.car.Entities.cars.Car;
 import dat3.car.dto.cars.CarDto;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CarFactory {
     public CarFactory() {}
 
-    public List<Car> build(){
-        var assembler = new CarListAssembler();
-        return assembler.cars();
-    }
-
-    public Car build(String brand, String model, double pricePrDay)
+    public Car car(String brand, String model, double pricePrDay)
     {
-        var car = new Car(brand,model,pricePrDay);
-        return car;
+        return new Car(brand,model,pricePrDay);
     }
 
     public Car fromDto(CarDto dto){

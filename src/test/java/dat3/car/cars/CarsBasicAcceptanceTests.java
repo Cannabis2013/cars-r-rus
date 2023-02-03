@@ -17,7 +17,7 @@ public class CarsBasicAcceptanceTests {
     {
         var brand = "Fiat";
         var model = "Duna 70";
-        var car = factory.build(brand,model,150);
+        var car = factory.car(brand,model,150);
 
         String id = "";
         try {
