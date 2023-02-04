@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Set up url variable
-        run: export $DbUrl=${{DBURL}}
+        run: export $DbUrl=${{DbUrl}}
 
       - name: Set up db user variable
         run: export $DbAzUser=${{DbAzUser}}
