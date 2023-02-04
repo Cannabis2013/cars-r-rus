@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Set up url variable
         run: export $DbUrl=${{DbUrl}}
 
@@ -22,8 +24,6 @@ jobs:
 
       - name: Set up db pass variable
         run: export $DbAzPass=${{DbAzPass}}
-
-      - uses: actions/checkout@v2
 
 
       - name: Set up Java version
