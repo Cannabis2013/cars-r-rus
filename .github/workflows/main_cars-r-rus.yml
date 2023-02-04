@@ -15,9 +15,10 @@ jobs:
 
     steps:
       - name: Set up env variables
-      - run: export $DbUrl=${{DbUrl}}
-      - run: export $DbAzUser=${{DbAzUser}}
-      - run: export $DbAzPass=${{DbAzPass}}
+      - run:
+         export $DbUrl=${{DbUrl}}
+         export $DbAzUser=${{DbAzUser}}
+         export $DbAzPass=${{DbAzPass}}
       - uses: actions/checkout@v2
 
 
