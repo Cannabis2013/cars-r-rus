@@ -12,12 +12,12 @@ public class MemberFactory {
 
     public Member fromDto(MemberDto dto)
     {
-        return converter._fromDto(dto);
+        return converter.fromDto(dto);
     }
 
     public MemberDto toDto(Member member)
     {
-        return converter._toDto(member);
+        return converter.toDto(member);
     }
 
     private final MemberConverter converter;

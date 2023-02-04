@@ -70,6 +70,13 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>MyCo Internal Repository</name>
+            <url>file://.</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
