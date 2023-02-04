@@ -14,7 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up env variables
+      - run: export $DbUrl=${{DbUrl}}
+      - run: export $DbAzUser=${{DbAzUser}}
+      - run: export $DbAzPass=${{DbAzPass}}
       - uses: actions/checkout@v2
+
 
       - name: Set up Java version
         uses: actions/setup-java@v1
