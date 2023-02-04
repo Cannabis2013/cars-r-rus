@@ -14,11 +14,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up env variables
-      - run:
-         export $DbUrl=${{DbUrl}}
-         export $DbAzUser=${{DbAzUser}}
-         export $DbAzPass=${{DbAzPass}}
+      - name: Set up url variable
+        run: export $DbUrl=${{DbUrl}}
+
+      - name: Set up db user variable
+        run: export $DbAzUser=${{DbAzUser}}
+
+      - name: Set up db pass variable
+        run: export $DbAzPass=${{DbAzPass}}
+
       - uses: actions/checkout@v2
 
 
