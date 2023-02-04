@@ -74,7 +74,7 @@
         <repository>
             <id>internal.repo</id>
             <name>MyCo Internal Repository</name>
-            <url>file://.</url>
+            <url>ftps://waws-prod-db3-271.ftp.azurewebsites.windows.net/site/wwwroot</url>
         </repository>
     </distributionManagement>
     <build>
