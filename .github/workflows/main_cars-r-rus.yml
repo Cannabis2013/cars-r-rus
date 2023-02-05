@@ -17,13 +17,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set up url variable
-        run: export $DbUrl=${{secrets.DbUrl}}
+        run: export DbUrl=${{secrets.DbUrl}}
 
       - name: Set up db user variable
-        run: export $DbAzUser=${{secrets.DbAzUser}}
+        run: export DbAzUser=${{secrets.DbAzUser}}
 
       - name: Set up db pass variable
-        run: export $DbAzPass=${{secrets.DbAzPass}}
+        run: export DbAzPass=${{secrets.DbAzPass}}
 
 
       - name: Set up Java version
