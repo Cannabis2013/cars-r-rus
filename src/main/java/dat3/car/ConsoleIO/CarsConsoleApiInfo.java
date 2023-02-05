@@ -17,7 +17,6 @@ public class CarsConsoleApiInfo {
 
     private static void printApiEndpoints()
     {
-        var domain = "\t http://localhost:8080/";
         System.out.println("Available endpoints:");
         System.out.println();
         printEndPoint("cars","A list of all cars");
@@ -28,7 +27,7 @@ public class CarsConsoleApiInfo {
 
     private static void printEndPoint(String path, String description)
     {
-        var domain = "\t http://localhost:8080/";
+        var domain = "\t https://localhost:8080/";
 
         System.out.println(domain + path + " : " + description);
     }
