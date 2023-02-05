@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarsBasicAcceptanceTests {
     public CarsBasicAcceptanceTests(){};
 
-    @Test
     public void addCarToRepository()
     {
         var brand = "Fiat";

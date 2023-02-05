@@ -16,19 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up url variable
-        run: export DbUrl=${{ vars.DbUrl }}
-
-      - name: Print varialbe
-        run: echo $DbUrl
-
-      - name: Set up db user variable
-        run: export DbAzUser=$DbAzUser
-
-      - name: Set up db pass variable
-        run: export DbAzPass=${{secrets.DbAzPass}}
-
-
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
