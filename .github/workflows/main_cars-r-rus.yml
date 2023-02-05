@@ -20,7 +20,7 @@ jobs:
         run: export DbUrl=$DbUrl
 
       - name: Print varialbe
-        run: echo '$DbUrl'
+        run: echo $DbUrl
 
       - name: Set up db user variable
         run: export DbAzUser=$DbAzUser
