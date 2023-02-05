@@ -19,6 +19,9 @@ jobs:
       - name: Set up url variable
         run: export DbUrl=$DbUrl
 
+      - name: Print varialbe
+        run: echo '$DbUrl'
+
       - name: Set up db user variable
         run: export DbAzUser=$DbAzUser
 
