@@ -19,6 +19,7 @@ public class CarsConsoleApiInfo {
     {
         System.out.println("Available endpoints:");
         System.out.println();
+        printEndPoint("","Welcome message");
         printEndPoint("cars","A list of all cars");
         printEndPoint("cars/addCar","Add a car object");
         printEndPoint("members","A list of all members");
@@ -27,7 +28,7 @@ public class CarsConsoleApiInfo {
 
     private static void printEndPoint(String path, String description)
     {
-        var domain = "\t https://localhost:8080/";
+        var domain = "\t http://localhost:8080/";
 
         System.out.println(domain + path + " : " + description);
     }
