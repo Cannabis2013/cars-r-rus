@@ -12,7 +12,7 @@ on:
 env:
   DbUrl : ${{vars.DbUrl}}
   DbAzUser : ${{vars.DbAzUser}}
-  DbAzPass : ${{secrets.DbAzPass}}
+  DbAzPass : ''
 
 jobs:
   build:
