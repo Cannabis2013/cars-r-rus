@@ -9,6 +9,11 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  DbUrl : ${{vars.DbUrl}}
+  DbAzUser : ${{vars.DbAzUser}}
+  DbAzPass : ${{secrets.DbAzPass}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
