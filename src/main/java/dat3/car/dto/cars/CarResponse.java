@@ -1,7 +1,7 @@
 package dat3.car.dto.cars;
 
-public final class CarDto {
-    public CarDto(String brand, String model, double pricePrDay) {
+public final class CarResponse {
+    public CarResponse(String brand, String model, double pricePrDay) {
         this.brand = brand;
         this.model = model;
         this.pricePrDay = pricePrDay;

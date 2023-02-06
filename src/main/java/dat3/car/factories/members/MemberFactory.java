@@ -1,7 +1,8 @@
 package dat3.car.factories.members;
 
 import dat3.car.Entities.members.Member;
-import dat3.car.dto.members.MemberDto;
+import dat3.car.dto.members.MemberRequest;
+import dat3.car.dto.members.MemberResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,14 +11,14 @@ public class MemberFactory {
         this.converter = new MemberConverter();
     }
 
-    public Member fromDto(MemberDto dto)
+    public Member fromRequest(MemberRequest dto)
     {
-        return converter.fromDto(dto);
+        return converter.fromRequest(dto);
     }
 
-    public MemberDto toDto(Member member)
+    public MemberResponse toResponse(Member member)
     {
-        return converter.toDto(member);
+        return converter.toResponse(member);
     }
 
     private final MemberConverter converter;

@@ -21,7 +21,7 @@ public class Members {
     {
         var ite = memberRepository.findAll();
         var members = entitiesConverter.toList(ite);
-        var dtos = members.stream().map(memberFactory::toDto).toList();
+        var dtos = members.stream().map(memberFactory::toResponse).toList();
         return response.ok(dtos);
     }
 

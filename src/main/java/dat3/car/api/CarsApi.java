@@ -1,6 +1,6 @@
 package dat3.car.api;
 
-import dat3.car.dto.cars.CarDto;
+import dat3.car.dto.cars.CarRequest;
 import dat3.car.services.cars.Cars;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class CarsApi {
     }
 
     @PostMapping("/cars/addCar")
-    public ResponseEntity<String> addCar(@RequestBody CarDto car)
+    public ResponseEntity<String> addCar(@RequestBody CarRequest car)
     {
         return cars.add(car);
     }

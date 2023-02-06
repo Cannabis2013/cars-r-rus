@@ -1,38 +1,62 @@
 package dat3.car.factories.members;
 
+import dat3.car.Entities.members.AddressDetails;
 import dat3.car.Entities.members.Member;
-import dat3.car.dto.members.MemberDto;
+import dat3.car.Entities.members.PersonalDetails;
+import dat3.car.dto.members.MemberRequest;
+import dat3.car.dto.members.MemberResponse;
+
+import java.util.Map;
 
 class MemberConverter {
-    Member fromDto(MemberDto dto)
+    Member fromRequest(MemberRequest request)
     {
-        return new Member();
+        var member = new Member();
+        member.setEmail(request.getEmail());
+        member.setUsername(member.getUsername());
+        return member;
     }
 
-    MemberDto toDto(Member member)
+    MemberResponse toResponse(Member member)
     {
-        return _toDto(member);
+        return _toResponse(member);
     }
 
-    private MemberDto _toDto(Member member)
+    private MemberResponse _toResponse(Member member)
     {
-        var dto = new MemberDto();
-        addUserDetails(dto, member);
-        addAdressDetails(dto, member);
-        return dto;
+        var response = new MemberResponse();
+        updateUserDetails(response, member);
+        updateAddressDetails(response, member);
+        return response;
     }
 
-    private void addUserDetails(MemberDto dto, Member member)
+    private void updateUserDetails(MemberResponse dto, Member member)
     {
-        dto.setUsername(member.getUsername());
+        member.setUsername(member.getUsername());
         dto.setEmail(member.getEmail());
     }
 
-    private void addAdressDetails(MemberDto dto, Member member)
+    private void updateUserDetails(MemberRequest request, Member member)
     {
-        dto.setPhone(member.getAddressDetails().getPhones());
-        dto.setStreet(member.getAddressDetails().getStreet());
-        dto.setCity(member.getAddressDetails().getCity());
-        dto.setZip(member.getAddressDetails().getZip());
+        var personalDetails = new PersonalDetails(request.getFirstName(),request.getLastName());
+        member.setPersonalDetails(personalDetails);
+        request.setUsername(member.getUsername());
+        request.setEmail(member.getEmail());
+    }
+
+    private void updateAddressDetails(MemberResponse response, Member member)
+    {
+        var phones = member.getAddressDetails().getPhones()
+                .entrySet().stream().map(Map.Entry::getValue).toList();
+        response.setPhones(phones);
+        response.setStreet(member.getAddressDetails().getStreet());
+        response.setCity(member.getAddressDetails().getCity());
+        response.setZip(member.getAddressDetails().getZip());
+    }
+
+    private void updateAddressDetails(MemberRequest response, Member member)
+    {
+        var addressDetails = new AddressDetails(response.getStreet(),response.getCity(),response.getZip());
+
     }
 }

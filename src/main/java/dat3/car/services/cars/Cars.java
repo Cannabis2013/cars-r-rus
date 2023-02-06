@@ -2,7 +2,7 @@ package dat3.car.services.cars;
 
 import dat3.car.Entities.cars.Car;
 import dat3.car.SLA.Http.HttpResult;
-import dat3.car.dto.cars.CarDto;
+import dat3.car.dto.cars.CarRequest;
 import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.CarRepository;
 import dat3.car.services.Entities.EntitiesConverter;
@@ -23,8 +23,8 @@ public class Cars {
     {
         var ite = _carRepository.findAll();
         var cars = _converter.toList(ite);
-        var carDtos = cars.stream().map(_factory::toDto).toList();
-        return _response.ok(carDtos);
+        var response = cars.stream().map(_factory::toResponse).toList();
+        return _response.ok(response);
     }
 
     public ResponseEntity<String> get(String id)
@@ -38,12 +38,12 @@ public class Cars {
         if(optional.isEmpty())
             return _response.notFound();
         var car = optional.get();
-        return _response.ok(_factory.toDto(car));
+        return _response.ok(_factory.toResponse(car));
     }
 
-    public ResponseEntity<String> add(CarDto dto)
+    public ResponseEntity<String> add(CarRequest dto)
     {
-        var car = _factory.fromDto(dto);
+        var car = _factory.fromRequest(dto);
         try {
             _carRepository.save(car);
         } catch (Exception e){

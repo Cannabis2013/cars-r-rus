@@ -1,7 +1,8 @@
 package dat3.car.factories.cars;
 
 import dat3.car.Entities.cars.Car;
-import dat3.car.dto.cars.CarDto;
+import dat3.car.dto.cars.CarRequest;
+import dat3.car.dto.cars.CarResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,15 +14,15 @@ public class CarFactory {
         return new Car(brand,model,pricePrDay);
     }
 
-    public Car fromDto(CarDto dto){
+    public Car fromRequest(CarRequest dto){
         var car = new Car(dto.getBrand(),dto.model(),dto.getPricePrDay());
         var bestDiscount = (int) (car.getPricePrDay() *0.85);
         car.setBestDiscount(bestDiscount);
         return car;
     }
 
-    public CarDto toDto(Car car)
+    public CarResponse toResponse(Car car)
     {
-        return new CarDto(car.getBrand(),car.getModel(),car.getPricePrDay());
+        return new CarResponse(car.getBrand(),car.getModel(),car.getPricePrDay());
     }
 }
