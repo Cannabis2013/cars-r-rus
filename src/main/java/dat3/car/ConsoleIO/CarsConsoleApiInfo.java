@@ -20,10 +20,7 @@ public class CarsConsoleApiInfo {
         System.out.println("Available endpoints:");
         System.out.println();
         printEndPoint("","Welcome message");
-        printEndPoint("cars","A list of all cars");
-        printEndPoint("cars/addCar","Add a car object");
-        printEndPoint("members","A list of all members");
-        printEndPoint("h2-console/login.jsp","H2 UI interface for embedded database management");
+        printEndPoint("swagger-ui/index.html","OpenAPI");
     }
 
     private static void printEndPoint(String path, String description)
