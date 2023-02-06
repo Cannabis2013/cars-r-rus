@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 public class CarsBasicAcceptanceTests {
@@ -17,24 +18,22 @@ public class CarsBasicAcceptanceTests {
     @Test
     public void addCarToRepository()
     {
-        var brand = "Fiat";
-        var model = "Duna 70";
-        car = factory.car(brand,model,150);
-
-        String id = "";
+        Car car = null;
         try {
-            id = repository.save(car).getId();
+            car = add();
         } catch (Exception e){
             fail();
         }
-        var subject = repository.findByBrandLikeAndModelLike(brand,model);
-        assertEquals(id, subject.getId());
+        var subject = repository.findByBrandLikeAndModelLike(car.getBrand(), car.getModel());
+        assertEquals(car.getId(), subject.getId());
     }
 
     @Test
     public void removeCarFromDatabase()
     {
+        Car car = null;
         try {
+            car = add();
             repository.delete(car);
         } catch (Exception e){
             System.out.println("**********");
@@ -46,8 +45,15 @@ public class CarsBasicAcceptanceTests {
         Assertions.assertFalse(optional.isPresent());
     }
 
+    private Car add() {
+        var brand = "Fiat";
+        var model = "Duna 70";
+        var car = factory.car(brand,model,150);
+        car = repository.save(car);
+        return car;
+    }
+
     // Test entities
-    private Car car;
     @Autowired
     private CarFactory factory;
     @Autowired
