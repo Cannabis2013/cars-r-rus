@@ -22,15 +22,21 @@ public class CarsApi {
     }
 
     @PostMapping("/cars/addCar")
-    public ResponseEntity<String> addCar(@RequestBody CarRequest car)
+    public ResponseEntity<String> addCar(@RequestBody CarRequest request)
     {
-        return cars.add(car);
+        return cars.add(request);
     }
 
     @PostMapping("/cars/removeCar")
     public ResponseEntity<String> removeCar(@RequestParam String id)
     {
         return cars.remove(id);
+    }
+
+    @PatchMapping("/cars/updateCar")
+    public ResponseEntity<String> updateCar(@RequestBody CarRequest request)
+    {
+        return cars.update(request);
     }
 
     private final Cars cars;

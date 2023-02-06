@@ -1,6 +1,7 @@
 package dat3.car.api;
 
 import dat3.car.Entities.members.Member;
+import dat3.car.dto.members.MemberRequest;
 import dat3.car.services.members.Members;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,8 @@ public class MembersApi {
         return members.all();
     }
 
-    public ResponseEntity<String> addMember(@RequestBody Member member){
-        return members.add(member);
+    public ResponseEntity<String> addMember(@RequestBody MemberRequest request){
+        return members.add(request);
     }
 
     private final Members members;

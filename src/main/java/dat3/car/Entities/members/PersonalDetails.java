@@ -3,6 +3,8 @@ package dat3.car.Entities.members;
 import dat3.car.Entities.EntityModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class PersonalDetails extends EntityModel {
@@ -14,6 +16,14 @@ public class PersonalDetails extends EntityModel {
     public PersonalDetails() {
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -21,7 +31,6 @@ public class PersonalDetails extends EntityModel {
     public String getLastName() {
         return lastName;
     }
-
 
     @OneToOne(mappedBy = "personalDetails")
     private Member member;

@@ -1,52 +1,69 @@
 package dat3.car.services.members;
 
-import dat3.car.Entities.members.Member;
 import dat3.car.SLA.Http.HttpResult;
+import dat3.car.dto.members.MemberRequest;
 import dat3.car.factories.members.MemberFactory;
 import dat3.car.repository.MemberRepository;
-import dat3.car.services.Entities.EntitiesConverter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Members {
-    public Members(MemberFactory memberFactory, MemberRepository memberRepository, HttpResult<String> response) {
-        this.memberFactory = memberFactory;
-        this.memberRepository = memberRepository;
-        this.entitiesConverter = new EntitiesConverter<>();
-        this.response = response;
+    public Members(MemberFactory factory, MemberRepository repository, HttpResult<String> response) {
+        _factory = factory;
+        _repository = repository;
+        _response = response;
     }
 
     public ResponseEntity<String> all()
     {
-        var ite = memberRepository.findAll();
-        var members = entitiesConverter.toList(ite);
-        var dtos = members.stream().map(memberFactory::toResponse).toList();
-        return response.ok(dtos);
+        var members = _repository.findAll();
+        var dtos = members.stream().map(_factory::toResponse).toList();
+        return _response.ok(dtos);
     }
 
     public ResponseEntity<String> get(String id)
     {
-        return response.bad("Not implemented yet");
+        var member = _repository.findById(id);
+        return member.isPresent()  ? _response.ok(member.get()) : _response.notFound();
+    }
+    public ResponseEntity<String> add(MemberRequest request)
+    {
+        var member = _factory.fromRequest(request);
+        try {
+            _repository.save(member);
+        } catch (Exception e){
+            return _response.bad(e.getMessage());
+        }
+        return _response.created(member);
     }
 
     public ResponseEntity<String> remove(String id)
     {
-        return response.bad("Not implemented yet");
-    }
-
-    public ResponseEntity<String> add(Member member)
-    {
         try {
-            memberRepository.save(member);
+            _repository.deleteById(id);
         } catch (Exception e){
-            return response.bad(e.getMessage());
+            return _response.bad("Failed to remove resource");
         }
-        return response.created(member);
+        return _response.ok();
     }
 
-    private final MemberFactory memberFactory;
-    private final MemberRepository memberRepository;
-    private final EntitiesConverter<Member> entitiesConverter;
-    private final HttpResult<String> response;
+    public ResponseEntity<String> update(MemberRequest request)
+    {
+        var optional = _repository.findById(request.getMemberId());
+        if(optional.isEmpty())
+            return _response.notFound();
+        var updatedMember = _factory.fromUpdateRequest(request,optional.get());
+        try {
+            _repository.deleteById(request.getMemberId());
+            _repository.save(updatedMember);
+        } catch (Exception e){
+            return _response.notUpdated();
+        }
+        return _response.ok();
+    }
+
+    private final MemberFactory _factory;
+    private final MemberRepository _repository;
+    private final HttpResult<String> _response;
 }

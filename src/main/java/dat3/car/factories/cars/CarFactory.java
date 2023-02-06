@@ -14,8 +14,9 @@ public class CarFactory {
         return new Car(brand,model,pricePrDay);
     }
 
-    public Car fromRequest(CarRequest dto){
-        var car = new Car(dto.getBrand(),dto.model(),dto.getPricePrDay());
+    public Car fromRequest(CarRequest request){
+        var car = new Car(request.getBrand(),request.getModel(),request.getPricePrDay());
+        car.setId(request.getCarId());
         var bestDiscount = (int) (car.getPricePrDay() *0.85);
         car.setBestDiscount(bestDiscount);
         return car;
@@ -23,6 +24,6 @@ public class CarFactory {
 
     public CarResponse toResponse(Car car)
     {
-        return new CarResponse(car.getBrand(),car.getModel(),car.getPricePrDay());
+        return new CarResponse(car.getBrand(),car.getModel(),car.getPricePrDay(), car.getId());
     }
 }

@@ -48,6 +48,11 @@ public class Member extends EntityModel {
         return addressDetails;
     }
 
+    public void setAddressDetails(AddressDetails details)
+    {
+        addressDetails = details;
+    }
+
     public List<String> getFavoriteColors() {
         return favoriteColors;
     }

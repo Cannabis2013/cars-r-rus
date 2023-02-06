@@ -7,19 +7,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberFactory {
-    public MemberFactory() {
-        this.converter = new MemberConverter();
+    public MemberFactory(MemberConverter converter, MemberUpdater updater) {
+        _converter = converter;
+        _updater = updater;
     }
 
-    public Member fromRequest(MemberRequest dto)
+    public Member fromRequest(MemberRequest request)
     {
-        return converter.fromRequest(dto);
+        return _converter.fromRequest(request);
     }
 
     public MemberResponse toResponse(Member member)
     {
-        return converter.toResponse(member);
+        return _converter.toResponse(member);
     }
 
-    private final MemberConverter converter;
+    public Member fromUpdateRequest(MemberRequest request, Member member)
+    {
+        return _updater.updateDetails(request,member);
+    }
+
+    private final MemberConverter _converter;
+    private final MemberUpdater _updater;
 }

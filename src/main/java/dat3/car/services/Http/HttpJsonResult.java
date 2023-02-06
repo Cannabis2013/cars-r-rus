@@ -42,4 +42,9 @@ public class HttpJsonResult implements HttpResult<String> {
     public ResponseEntity<String> notFound() {
         return new ResponseEntity<String>("Resource not found",HttpStatus.NOT_FOUND);
     }
+
+    @Override
+    public ResponseEntity<String> notUpdated() {
+        return new ResponseEntity<String>("Resource not updated",HttpStatus.BAD_REQUEST);
+    }
 }

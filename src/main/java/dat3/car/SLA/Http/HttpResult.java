@@ -11,4 +11,5 @@ public interface HttpResult<TResponse>{
     <TEntity>ResponseEntity<TResponse> created(TEntity entity);
     ResponseEntity<TResponse> bad(String message);
     ResponseEntity<TResponse> notFound();
+    ResponseEntity<TResponse> notUpdated();
 }

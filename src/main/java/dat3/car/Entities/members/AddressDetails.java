@@ -5,7 +5,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.MapKeyColumn;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +43,10 @@ public class AddressDetails extends EntityModel {
         this.zip = zip;
     }
 
+    public void setPhones(Map<String, String> phones) {
+        this.phones = phones;
+    }
+
     public Map<String, String> getPhones() {
         return phones;
     }
@@ -51,7 +54,7 @@ public class AddressDetails extends EntityModel {
     @ElementCollection
     @MapKeyColumn(name = "description")
     @Column(name = "phone_number")
-    private final Map<String,String> phones = new HashMap<>();
+    private Map<String,String> phones = new HashMap<>();
 
     private String street;
     private String city;
