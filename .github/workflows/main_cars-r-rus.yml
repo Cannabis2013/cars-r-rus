@@ -11,8 +11,8 @@ on:
 
 env:
   DbUrl : ${{vars.DbUrl}}
-  DbAzUser : ${{vars.DbAzUser}}
-  DbAzPass : ''
+  DbUser : ${{vars.DbAzUser}}
+  DbPass : ''
 
 jobs:
   build:
