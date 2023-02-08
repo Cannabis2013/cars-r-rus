@@ -21,6 +21,7 @@ public class CarsConsoleApiInfo {
         System.out.println();
         printEndPoint("","Welcome message");
         printEndPoint("swagger-ui/index.html","OpenAPI");
+        printEndPoint("h2-console","H2 web interface");
     }
 
     private static void printEndPoint(String path, String description)

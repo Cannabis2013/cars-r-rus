@@ -19,8 +19,8 @@ public class Car extends EntityModel {
         return brand;
     }
 
-    public void setBrand(String _brand) {
-        this.brand = _brand;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getModel() {
