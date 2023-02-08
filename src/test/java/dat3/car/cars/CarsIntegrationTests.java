@@ -13,10 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
-import javax.swing.text.html.Option;
-
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -25,7 +21,7 @@ public class CarsIntegrationTests {
     @Test
     public void addCarFromRequest()
     {
-        var req = _builder.request();
+        var req = _builder.teslaModelX();
         var response = _cars.add(req);
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
     }

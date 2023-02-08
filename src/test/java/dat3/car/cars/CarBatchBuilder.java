@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CarBatchBuilder {
-    CarRequest request(){
+    CarRequest teslaModelX(){
         return new CarRequest("Tesla ","Modex X");
     }
 }
