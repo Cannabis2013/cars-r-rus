@@ -24,11 +24,9 @@ public class MembersCRUDTest {
     @Test
     public void removeMemberFromRepository()
     {
-        var optional = _repository.findAll().stream().findFirst();
-        if(optional.isEmpty())
-            fail();
-        assertDoesNotThrow(() -> _repository.delete(optional.get()));
-        var found = _repository.findById(optional.get().getId());
+        var member = _repository.findAll().stream().findFirst().orElseThrow(Assertions::fail);
+        assertDoesNotThrow(() -> _repository.delete(member));
+        var found = _repository.findById(member.getId());
         assertFalse(found.isPresent());
     }
 
