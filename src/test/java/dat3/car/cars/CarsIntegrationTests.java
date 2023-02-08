@@ -8,6 +8,9 @@ import dat3.car.Entities.cars.Car;
 import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.CarRepository;
 import dat3.car.services.cars.Cars;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +21,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 public class CarsIntegrationTests {
+    @BeforeEach
+    public void init()
+    {
+        _initializor.init();
+    }
+
+    @AfterEach
+    public void cleanUp()
+    {
+        _initializor.clear();
+    }
     @Test
     public void addCarFromRequest()
     {
@@ -28,40 +42,29 @@ public class CarsIntegrationTests {
 
     @Test
     public void removeCarFromRequest(){
-        var car = addTestCarToRepository("Ford","A");
-        if(car == null)
-            fail();
+        var car = _initializor.randomCar();
         var response = _cars.remove(car.getId());
         assertEquals(HttpStatus.OK,response.getStatusCode());
-
     }
 
     private Car addTestCarToRepository(String brand, String model)
     {
         var car = new Car(brand,model,2490);
-        Car savedCar;
+        Car savedCar = null;
         try {
             savedCar = _repository.save(car);
         } catch (Exception e){
-            return null;
+            fail();
         }
         return savedCar;
-    }
-
-    private Car addInitializedToDatabase() {
-        var brand = "Fiat";
-        var model = "Duna 70";
-        var car = new Car(brand,model,150);
-        car = _repository.save(car);
-        return car;
     }
 
     @Autowired
     private CarRepository _repository;
     @Autowired
-    private CarFactory _factory;
-    @Autowired
     private Cars _cars;
     @Autowired
     private CarBatchBuilder _builder;
+    @Autowired
+    private CarsDbInitializor _initializor;
 }

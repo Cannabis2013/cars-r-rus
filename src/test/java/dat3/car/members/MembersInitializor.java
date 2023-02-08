@@ -1,18 +1,27 @@
-package dat3.car.config;
+package dat3.car.members;
 
 import dat3.car.Entities.members.Member;
 import dat3.car.Entities.members.PersonalDetails;
+import dat3.car.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MemberBatchFactory {
+public class MembersInitializor {
 
-    public List<Member> build(){
+    public MembersInitializor(MemberRepository repository) {
+        _repository = repository;
+    }
+
+    public void init(){
         var members = _build();
-        return members;
+        _repository.saveAll(members);
+    }
+
+    public void clear(){
+        _repository.deleteAll();
     }
 
     private List<Member> _build()
@@ -51,4 +60,6 @@ public class MemberBatchFactory {
         members.get(1).setPersonalDetails(new PersonalDetails("Jens","Peter"));
         members.get(2).setPersonalDetails(new PersonalDetails("Lone","Liderlig"));
     }
+
+    private final MemberRepository _repository;
 }

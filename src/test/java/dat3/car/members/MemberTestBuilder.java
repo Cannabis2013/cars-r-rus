@@ -16,6 +16,15 @@ public class MemberTestBuilder {
         return member;
     }
 
+    public Member rasmusFalk()
+    {
+        var member = new Member();
+        updateUserDetails(member,"Falken","falk1234","falk2gmail.com");
+        updatePersonalDetails(member,"Carlos","Zeca");
+        updateAddressDetails(member,"Falkonér Alle 23","Frederiksberg","2100");
+        return member;
+    }
+
     private void updateUserDetails(Member member, String username, String password, String email)
     {
         member.setUsername(username);
