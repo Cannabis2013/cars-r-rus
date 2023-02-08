@@ -10,8 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class CarsCRUDTests {
-    public CarsCRUDTests(){};
+public class CarsRepositoryTests {
+    public CarsRepositoryTests(){};
 
     @Test
     public void addCarToRepository()
@@ -63,14 +63,11 @@ public class CarsCRUDTests {
     private Car addInitializedToDatabase() {
         var brand = "Fiat";
         var model = "Duna 70";
-        var car = factory.car(brand,model,150);
+        var car = new Car(brand,model,150);
         car = repository.save(car);
         return car;
     }
 
-    // Test entities
-    @Autowired
-    private CarFactory factory;
     @Autowired
     private CarRepository repository;
 }
