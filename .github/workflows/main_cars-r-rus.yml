@@ -9,17 +9,14 @@ on:
       - main
   workflow_dispatch:
 
-jobs:
-
   env:
     DbUrl: ${{vars.DbUrl}}
     DbUser: ${{vars.DbAzUser}}
     DbPass: ''
 
-
+jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
