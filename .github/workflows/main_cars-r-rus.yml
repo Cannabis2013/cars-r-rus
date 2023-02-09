@@ -9,10 +9,10 @@ on:
       - main
   workflow_dispatch:
 
-  env:
-    DbUrl: ${{vars.DbUrl}}
-    DbUser: ${{vars.DbAzUser}}
-    DbPass: ''
+env:
+  DbUrl: ${{vars.DbUrl}}
+  DbUser: ${{vars.DbAzUser}}
+  DbPass: ''
 
 jobs:
   build:
