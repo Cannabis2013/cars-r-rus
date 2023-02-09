@@ -6,18 +6,26 @@ import dat3.car.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
-public class MembersInitializor {
+public class MembersDbInitializor {
 
-    public MembersInitializor(MemberRepository repository) {
+    public MembersDbInitializor(MemberRepository repository) {
         _repository = repository;
     }
 
     public void init(){
         var members = _build();
         _repository.saveAll(members);
+    }
+
+    public Member randomMember()
+    {
+        var members = _build();
+        Collections.shuffle(members);
+        return members.get(0);
     }
 
     public void clear(){
