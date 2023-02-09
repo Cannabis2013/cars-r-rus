@@ -6,28 +6,36 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("api/members/")
 public class MembersApi {
     public MembersApi(Members members) {
         this.members = members;
     }
 
-    @GetMapping("/members")
+
+
+    @GetMapping("/all")
     public ResponseEntity<String> members(){
         return members.all();
     }
 
-    @PostMapping("/members/add")
+    @GetMapping("/")
+    public ResponseEntity<String> member(@RequestParam String id){
+        return members.get(id);
+    }
+
+    @PostMapping("add")
     public ResponseEntity<String> addMember(@RequestBody MemberRequest request){
         return members.add(request);
     }
 
-    @PostMapping("/members/remove")
+    @PostMapping("remove")
     public ResponseEntity<String> remove(@RequestParam String id)
     {
         return members.remove(id);
     }
 
-    @PutMapping("/members/update")
+    @PutMapping("update")
     public ResponseEntity<String> update(@RequestBody MemberRequest request)
     {
         return members.update(request);
