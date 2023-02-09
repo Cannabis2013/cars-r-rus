@@ -12,5 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member,String> {
+    @Transactional
+    @Modifying
+    @Query("update Member m set m.personalDetails = ?1 where m.id like ?2")
+    int updatePersonalDetailsByIdLike(PersonalDetails personalDetails, String id);
     Optional<Member> findByUsernameLike(String username);
 }

@@ -74,6 +74,7 @@ public class Member extends EntityModel {
     private AddressDetails addressDetails = new AddressDetails();
 
     @ElementCollection
+    @JoinColumn(name = "member_favorite_color",referencedColumnName = "member_id")
     private final List<String> favoriteColors = new ArrayList<>();
 
     @Column(unique = true)

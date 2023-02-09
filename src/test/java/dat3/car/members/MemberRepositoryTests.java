@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class MembersCRUDTest {
+public class MemberRepositoryTests {
     @BeforeEach
     public void init(){
         _initializor.init();
@@ -48,15 +48,21 @@ public class MembersCRUDTest {
     @Test
     public void updateMemberFromDatabase()
     {
+        /*
+            This is a lazy implementation and is due to a complex entity structure.
+
+            Another implementation is needed as this may cause performance issues on a larger scale I assume
+         */
         var zeca = _builder.carlosZeca();
         var fromMemory = _initializor.randomMember(); // Get a random member from memory
         var fromDb = _repository.findByUsernameLike(fromMemory.getUsername()).orElseThrow(AssertionFailedError::new); // Get the equivalent member from database
-        var details = fromDb.getPersonalDetails();
-        details.setFirstName(zeca.getPersonalDetails().getFirstName());
-        details.setLastName(zeca.getPersonalDetails().getLastName());
-        var updatedFromDb = _repository.findById(fromDb.getId());
-        assertEquals(zeca.getPersonalDetails().getFirstName(),updatedFromDb.get().getPersonalDetails().getFirstName());
-        assertEquals(zeca.getPersonalDetails().getLastName(),updatedFromDb.get().getPersonalDetails().getLastName());
+        fromDb.getPersonalDetails().setFirstName(zeca.getPersonalDetails().getFirstName());
+        fromDb.getPersonalDetails().setLastName(zeca.getPersonalDetails().getLastName());
+        _repository.delete(fromDb);
+        Member saved = _repository.save(fromDb);
+        var updatedFromDb = _repository.findById(saved.getId()).orElseThrow(AssertionFailedError::new);
+        assertEquals(zeca.getPersonalDetails().getFirstName(),updatedFromDb.getPersonalDetails().getFirstName());
+        assertEquals(zeca.getPersonalDetails().getLastName(),updatedFromDb.getPersonalDetails().getLastName());
     }
 
     @Autowired
