@@ -51,9 +51,9 @@ public class MembersCRUDTest {
         var zeca = _builder.carlosZeca();
         var fromMemory = _initializor.randomMember(); // Get a random member from memory
         var fromDb = _repository.findByUsernameLike(fromMemory.getUsername()).orElseThrow(AssertionFailedError::new); // Get the equivalent member from database
-        fromDb.getPersonalDetails().setFirstName(zeca.getPersonalDetails().getFirstName());
-        fromDb.getPersonalDetails().setLastName(zeca.getPersonalDetails().getLastName());
-
+        var details = fromDb.getPersonalDetails();
+        details.setFirstName(zeca.getPersonalDetails().getFirstName());
+        details.setLastName(zeca.getPersonalDetails().getLastName());
         var updatedFromDb = _repository.findById(fromDb.getId());
         assertEquals(zeca.getPersonalDetails().getFirstName(),updatedFromDb.get().getPersonalDetails().getFirstName());
         assertEquals(zeca.getPersonalDetails().getLastName(),updatedFromDb.get().getPersonalDetails().getLastName());
