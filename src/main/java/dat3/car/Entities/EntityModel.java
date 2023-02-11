@@ -14,12 +14,6 @@ public class EntityModel {
     @Column(name = "id", nullable = false)
     protected String id;
 
-    @CreationTimestamp
-    protected LocalDateTime created;
-
-    @UpdateTimestamp
-    protected LocalDateTime lastEdited;
-
     public String getId() {
         return id;
     }

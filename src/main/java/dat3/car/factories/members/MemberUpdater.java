@@ -1,12 +1,13 @@
 package dat3.car.factories.members;
 
+import dat3.car.Entities.members.MemberCompleteDetails;
 import dat3.car.Entities.members.Member;
 import dat3.car.dto.members.MemberRequest;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberUpdater {
-    Member updateDetails(MemberRequest request, Member member)
+    MemberCompleteDetails updateDetails(MemberRequest request, MemberCompleteDetails member)
     {
         updateUserDetails(request,member);
         updatePersonalDetails(request,member);

@@ -1,5 +1,6 @@
 package dat3.car.factories.members;
 
+import dat3.car.Entities.members.MemberCompleteDetails;
 import dat3.car.Entities.members.AddressDetails;
 import dat3.car.Entities.members.Member;
 import dat3.car.Entities.members.PersonalDetails;
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberConverter {
-    Member fromRequest(MemberRequest request)
+    MemberCompleteDetails fromRequest(MemberRequest request)
     {
-        var member = new Member();
+        var member = new MemberCompleteDetails();
         member.setId(request.getMemberId());
         updateUserDetails(request,member);
         updateAddressDetails(request,member);

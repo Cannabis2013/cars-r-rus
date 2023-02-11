@@ -1,5 +1,6 @@
 package dat3.car.members;
 
+import dat3.car.Entities.members.MemberCompleteDetails;
 import dat3.car.Entities.members.Member;
 import org.springframework.stereotype.Service;
 
@@ -7,18 +8,18 @@ import java.util.HashMap;
 
 @Service
 public class MemberTestBuilder {
-    public Member carlosZeca()
+    public MemberCompleteDetails carlosZeca()
     {
-        var member = new Member();
+        var member = new MemberCompleteDetails();
         updateUserDetails(member,"Sega_Megadrive","elmer1234","segaFCK2gmail.com");
         updatePersonalDetails(member,"Carlos","Zeca");
         updateAddressDetails(member,"Østerbrogade 23","København","2200");
         return member;
     }
 
-    public Member rasmusFalk()
+    public MemberCompleteDetails rasmusFalk()
     {
-        var member = new Member();
+        var member = new MemberCompleteDetails();
         updateUserDetails(member,"Falken","falk1234","falk2gmail.com");
         updatePersonalDetails(member,"Carlos","Zeca");
         updateAddressDetails(member,"Falkonér Alle 23","Frederiksberg","2100");

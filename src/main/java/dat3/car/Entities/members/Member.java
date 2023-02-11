@@ -8,8 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Entity
-@Table(name = "member")
+@MappedSuperclass
 public class Member extends EntityModel {
     public Member(String username, String email, String password) {
         this.username = username;
@@ -76,7 +75,6 @@ public class Member extends EntityModel {
     @ElementCollection
     @JoinColumn(name = "member_favorite_color",referencedColumnName = "member_id")
     private final List<String> favoriteColors = new ArrayList<>();
-
     @Column(unique = true)
     private String username;
 

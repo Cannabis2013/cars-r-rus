@@ -1,5 +1,6 @@
 package dat3.car.factories.members;
 
+import dat3.car.Entities.members.MemberCompleteDetails;
 import dat3.car.Entities.members.Member;
 import dat3.car.dto.members.MemberRequest;
 import dat3.car.dto.members.MemberResponse;
@@ -12,7 +13,7 @@ public class MemberFactory {
         _updater = updater;
     }
 
-    public Member fromRequest(MemberRequest request)
+    public MemberCompleteDetails fromRequest(MemberRequest request)
     {
         return _converter.fromRequest(request);
     }
@@ -22,7 +23,7 @@ public class MemberFactory {
         return _converter.toResponse(member);
     }
 
-    public Member fromUpdateRequest(MemberRequest request, Member member)
+    public MemberCompleteDetails fromUpdateRequest(MemberRequest request, MemberCompleteDetails member)
     {
         return _updater.updateDetails(request,member);
     }

@@ -8,13 +8,14 @@ import java.util.*;
 
 @Service
 public class CarsDbInitializor {
-    public CarsDbInitializor(CarRepository repository) {
+    public CarsDbInitializor(CarRepository repository, CarBatchFactory batchFactory) {
         _repository = repository;
+        _batchFactory = batchFactory;
     }
 
     public void init()
     {
-        var batch = cars();
+        var batch = _batchFactory.batch();
         _repository.saveAll(batch);
     }
 
@@ -31,25 +32,6 @@ public class CarsDbInitializor {
         return cars.get(i);
     }
 
-    private List<Car> cars()
-    {
-        return new ArrayList<>() {
-            {
-                add(car("Volkswagen", "ID.4"));
-                add(car("Ford", "Escord RS2000"));
-                add(car("Nissan", "Shitbox model 1983"));
-                add(car("Lada","500 classic"));
-                add(car("Fiat","Duna 70"));
-            }
-        };
-    }
-
-    private Car car(String brand, String model)
-    {
-        var rand = new Random();
-        var price = rand.nextDouble(9000) + 1000;
-        return new Car(brand,model,price);
-    }
-
     private final CarRepository _repository;
+    private final CarBatchFactory _batchFactory;
 }

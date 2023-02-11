@@ -1,10 +1,8 @@
 package dat3.car.Entities.members;
 
 import dat3.car.Entities.EntityModel;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.MapKeyColumn;
+import jakarta.persistence.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +53,9 @@ public class AddressDetails extends EntityModel {
     @MapKeyColumn(name = "description")
     @Column(name = "phone_number")
     private Map<String,String> phones = new HashMap<>();
+
+    @OneToOne(mappedBy = "addressDetails")
+    private MemberCompleteDetails member;
 
     private String street;
     private String city;

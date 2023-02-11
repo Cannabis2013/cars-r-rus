@@ -1,5 +1,6 @@
 package dat3.car.services.members;
 
+import dat3.car.Entities.members.Member;
 import dat3.car.SLA.Http.HttpResult;
 import dat3.car.dto.members.MemberRequest;
 import dat3.car.factories.members.MemberFactory;
@@ -17,15 +18,15 @@ public class Members {
 
     public ResponseEntity<String> all()
     {
-        var members = _repository.findAll();
-        var dtos = members.stream().map(_factory::toResponse).toList();
-        return _response.ok(dtos);
+        var memberDetails = _repository.findAll();
+        var members = memberDetails.stream().map(m -> (Member) m).toList();
+        return _response.ok(members);
     }
 
     public ResponseEntity<String> get(String id)
     {
         var member = _repository.findById(id);
-        return member.isPresent()  ? _response.ok(member.get()) : _response.notFound();
+        return member.isPresent()  ? _response.ok((Member) member.get()) : _response.notFound();
     }
     public ResponseEntity<String> add(MemberRequest request)
     {
