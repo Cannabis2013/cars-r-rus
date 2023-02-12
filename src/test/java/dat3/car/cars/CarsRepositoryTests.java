@@ -1,6 +1,6 @@
 package dat3.car.cars;
 
-import dat3.car.Entities.cars.Car;
+import dat3.car.Entities.cars.CarUnrestricted;
 import dat3.car.repository.CarRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -38,7 +38,7 @@ public class CarsRepositoryTests {
     @Test
     public void removeCarFromDatabase()
     {
-        Car car = null;
+        CarUnrestricted car = null;
         try {
             car = addNissanSkyline();
             repository.delete(car);
@@ -61,10 +61,10 @@ public class CarsRepositoryTests {
         assertEquals(newModel,subject.getModel());
     }
 
-    private Car addNissanSkyline() {
+    private CarUnrestricted addNissanSkyline() {
         var brand = "Nissan";
         var model = "Skyline GTR med ekstra kardanaksel";
-        var car = new Car(brand,model,150);
+        var car = new CarUnrestricted(brand,model,150);
         return repository.save(car);
     }
 

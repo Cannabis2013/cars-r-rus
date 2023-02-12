@@ -1,6 +1,8 @@
 package dat3.car.api;
 
-import dat3.car.dto.members.MemberRequest;
+
+import dat3.car.Entities.members.MemberUnrestricted;
+import dat3.car.Entities.members.MemberRestricted;
 import dat3.car.services.members.Members;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,7 @@ public class MembersApi {
     }
 
     @PostMapping("add")
-    public ResponseEntity<String> addMember(@RequestBody MemberRequest request){
+    public ResponseEntity<String> addMember(@RequestBody MemberRestricted request){
         return members.add(request);
     }
 
@@ -34,7 +36,7 @@ public class MembersApi {
     }
 
     @PutMapping("update")
-    public ResponseEntity<String> update(@RequestBody MemberRequest request)
+    public ResponseEntity<String> update(@RequestBody MemberUnrestricted request)
     {
         return members.update(request);
     }

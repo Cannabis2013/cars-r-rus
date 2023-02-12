@@ -31,7 +31,7 @@ public class PersonalDetails extends EntityModel {
     }
 
     @OneToOne(mappedBy = "personalDetails")
-    private MemberCompleteDetails member;
+    private MemberUnrestricted member;
 
     private String firstName;
     private String lastName;

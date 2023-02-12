@@ -1,18 +1,15 @@
 package dat3.car.members;
 
-import dat3.car.Entities.members.Member;
-import dat3.car.Entities.members.PersonalDetails;
+import dat3.car.Entities.members.MemberRestricted;
 import dat3.car.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 @Service
 public class MembersDbInitializor {
 
-    public MembersDbInitializor(MemberRepository repository, MemberBatchFactory batchFactory) {
+    public MembersDbInitializor(MemberRepository repository, TESTMemberBatchFactory batchFactory) {
         _repository = repository;
         _batchFactory = batchFactory;
     }
@@ -22,7 +19,7 @@ public class MembersDbInitializor {
         _repository.saveAll(members);
     }
 
-    public Member randomMember()
+    public MemberRestricted randomMember()
     {
         var members = _batchFactory.batch();
         Collections.shuffle(members);
@@ -34,5 +31,5 @@ public class MembersDbInitializor {
     }
 
     private final MemberRepository _repository;
-    private final MemberBatchFactory _batchFactory;
+    private final TESTMemberBatchFactory _batchFactory;
 }

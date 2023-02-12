@@ -1,6 +1,6 @@
 package dat3.car.members;
 
-import dat3.car.Entities.members.Member;
+import dat3.car.Entities.members.MemberRestricted;
 import dat3.car.repository.MemberRepository;
 import org.junit.jupiter.api.*;
 import org.opentest4j.AssertionFailedError;
@@ -25,12 +25,12 @@ public class MemberRepositoryTests {
     public void setup()
     {
         var member = _builder.carlosZeca();
-        Member saved = assertDoesNotThrow(() -> _repository.save(member));
+        MemberRestricted saved = assertDoesNotThrow(() -> _repository.save(member));
     }
     @Test
     public void addMemberToDatabase(){
         var member = _builder.rasmusFalk();
-        Member saved = assertDoesNotThrow(() -> _repository.save(member));
+        MemberRestricted saved = assertDoesNotThrow(() -> _repository.save(member));
         var id = saved.getId();
         var subject = _repository.findById(id).orElseThrow(AssertionFailedError::new);
         assertEquals(subject.getId(), saved.getId());
@@ -59,7 +59,7 @@ public class MemberRepositoryTests {
         fromDb.getPersonalDetails().setFirstName(zeca.getPersonalDetails().getFirstName());
         fromDb.getPersonalDetails().setLastName(zeca.getPersonalDetails().getLastName());
         _repository.delete(fromDb);
-        Member saved = _repository.save(fromDb);
+        MemberRestricted saved = _repository.save(fromDb);
         var updatedFromDb = _repository.findById(saved.getId()).orElseThrow(AssertionFailedError::new);
         assertEquals(zeca.getPersonalDetails().getFirstName(),updatedFromDb.getPersonalDetails().getFirstName());
         assertEquals(zeca.getPersonalDetails().getLastName(),updatedFromDb.getPersonalDetails().getLastName());

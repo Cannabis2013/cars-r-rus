@@ -1,6 +1,6 @@
 package dat3.car.repository;
 
-import dat3.car.Entities.members.MemberCompleteDetails;
+import dat3.car.Entities.members.MemberUnrestricted;
 import dat3.car.Entities.members.PersonalDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-public interface MemberRepository extends JpaRepository<MemberCompleteDetails,String> {
+public interface MemberRepository extends JpaRepository<MemberUnrestricted,String> {
     @Transactional
     @Modifying
-    @Query("update MemberCompleteDetails m set m.personalDetails = ?1 where m.id like ?2")
+    @Query("update MemberUnrestricted m set m.personalDetails = ?1 where m.id like ?2")
     int updatePersonalDetailsByIdLike(PersonalDetails personalDetails, String id);
-    Optional<MemberCompleteDetails> findByUsernameLike(String username);
+    Optional<MemberUnrestricted> findByUsernameLike(String username);
 }

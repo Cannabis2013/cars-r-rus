@@ -1,33 +1,35 @@
 package dat3.car.factories.members;
 
-import dat3.car.Entities.members.MemberCompleteDetails;
-import dat3.car.Entities.members.Member;
-import dat3.car.dto.members.MemberRequest;
-import dat3.car.dto.members.MemberResponse;
+import dat3.car.Entities.members.MemberUnrestricted;
+import dat3.car.Entities.members.MemberRestricted;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberFactory {
-    public MemberFactory(MemberConverter converter, MemberUpdater updater) {
-        _converter = converter;
-        _updater = updater;
+    public MemberUnrestricted toUnrestricted(MemberRestricted member){
+        var unrestricted = new MemberUnrestricted();
+        unrestricted.setUsername(member.getUsername());
+        unrestricted.setContactDetails(member.getContactDetails());
+        unrestricted.setAddressDetails(member.getAddressDetails());
+        unrestricted.setPersonalDetails(member.getPersonalDetails());
+        return unrestricted;
     }
 
-    public MemberCompleteDetails fromRequest(MemberRequest request)
+    public MemberUnrestricted toUnrestricted(MemberRestricted member, MemberUnrestricted unrestricted){
+        unrestricted.setUsername(member.getUsername());
+        unrestricted.setContactDetails(member.getContactDetails());
+        unrestricted.setAddressDetails(member.getAddressDetails());
+        unrestricted.setPersonalDetails(member.getPersonalDetails());
+        return unrestricted;
+    }
+    public MemberRestricted toRestricted(MemberUnrestricted unrestricted)
     {
-        return _converter.fromRequest(request);
+        var restricted = new MemberRestricted();
+        restricted.setUsername(unrestricted.getUsername());
+        restricted.setContactDetails(unrestricted.getContactDetails());
+        restricted.setPersonalDetails(unrestricted.getPersonalDetails());
+        restricted.setAddressDetails(unrestricted.getAddressDetails());
+        restricted.setId(unrestricted.getId());
+        return restricted;
     }
-
-    public MemberResponse toResponse(Member member)
-    {
-        return _converter.toResponse(member);
-    }
-
-    public MemberCompleteDetails fromUpdateRequest(MemberRequest request, MemberCompleteDetails member)
-    {
-        return _updater.updateDetails(request,member);
-    }
-
-    private final MemberConverter _converter;
-    private final MemberUpdater _updater;
 }

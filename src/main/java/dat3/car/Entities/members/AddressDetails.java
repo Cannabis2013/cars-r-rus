@@ -41,21 +41,8 @@ public class AddressDetails extends EntityModel {
         this.zip = zip;
     }
 
-    public void setPhones(Map<String, String> phones) {
-        this.phones = phones;
-    }
-
-    public Map<String, String> getPhones() {
-        return phones;
-    }
-
-    @ElementCollection
-    @MapKeyColumn(name = "description")
-    @Column(name = "phone_number")
-    private Map<String,String> phones = new HashMap<>();
-
     @OneToOne(mappedBy = "addressDetails")
-    private MemberCompleteDetails member;
+    private MemberUnrestricted member;
 
     private String street;
     private String city;

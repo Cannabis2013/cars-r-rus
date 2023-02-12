@@ -19,8 +19,7 @@ public class CarsConsoleApiInfo {
     {
         System.out.println("Available endpoints:");
         System.out.println();
-        printEndPoint("","Welcome message");
-        printEndPoint("swagger-ui/index.html","OpenAPI");
+        printEndPoint("","SwaggerUI/OpenAPI interface");
         printEndPoint("h2-console","H2 web interface");
     }
 

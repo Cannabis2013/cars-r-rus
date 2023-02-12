@@ -1,8 +1,8 @@
 package dat3.car.services.cars;
 
-import dat3.car.Entities.cars.Car;
+import dat3.car.Entities.cars.CarRestricted;
+import dat3.car.Entities.cars.CarUnrestricted;
 import dat3.car.SLA.Http.HttpResult;
-import dat3.car.dto.cars.CarRequest;
 import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.CarRepository;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +20,13 @@ public class Cars {
     public ResponseEntity<String> all()
     {
         var cars = _carRepository.findAll();
-        var response = cars.stream().map(_factory::toResponse).toList();
+        var response = cars.stream().map(c -> (CarRestricted) c).toList();
         return _response.ok(response);
     }
 
     public ResponseEntity<String> get(String id)
     {
-        Optional<Car> optional;
+        Optional<CarUnrestricted> optional;
         try {
             optional = _carRepository.findById(id);
         } catch (Exception e){
@@ -34,19 +34,19 @@ public class Cars {
         }
         if(optional.isEmpty())
             return _response.notFound();
-        var car = optional.get();
-        return _response.ok(_factory.toResponse(car));
+        var car = (CarRestricted) optional.get();
+        return _response.ok(car);
     }
 
-    public ResponseEntity<String> add(CarRequest request)
+    public ResponseEntity<String> add(CarRestricted restricted)
     {
-        var car = _factory.fromRequest(request);
+        var unrestricted = _factory.toUnrestricted(restricted);
         try {
-            _carRepository.save(car);
+            _carRepository.save(unrestricted);
         } catch (Exception e){
             return _response.bad(e.getMessage());
         }
-        return _response.created(car);
+        return _response.created(unrestricted);
     }
 
     public ResponseEntity<String> remove(String id){
@@ -60,11 +60,10 @@ public class Cars {
         return _response.ok();
     }
 
-    public ResponseEntity<String> update(CarRequest request)
+    public ResponseEntity<String> update(CarRestricted request)
     {
-        Car car;
         try {
-            _carRepository.updateCarDetails(request.getBrand(),request.getModel(),request.getCarId());
+            _carRepository.updateCarDetails(request.getBrand(),request.getModel(),request.getId());
         }catch (Exception e){
             return _response.bad("Failed to update resource");
         }

@@ -1,6 +1,7 @@
 package dat3.car.api;
 
-import dat3.car.dto.cars.CarRequest;
+import dat3.car.Entities.cars.CarRestricted;
+
 import dat3.car.services.cars.Cars;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +17,15 @@ public class CarsApi {
         return cars.all();
     }
 
+    @PostMapping("/cars/addCar")
+    public ResponseEntity<String> addCar(@RequestBody CarRestricted request)
+    {
+        return cars.add(request);
+    }
+
     @GetMapping("/cars/car")
     public ResponseEntity<String> car(@RequestParam String id){
         return cars.get(id);
-    }
-
-    @PostMapping("/cars/addCar")
-    public ResponseEntity<String> addCar(@RequestBody CarRequest request)
-    {
-        return cars.add(request);
     }
 
     @PostMapping("/cars/removeCar")
@@ -34,7 +35,7 @@ public class CarsApi {
     }
 
     @PatchMapping("/cars/updateCar")
-    public ResponseEntity<String> updateCar(@RequestBody CarRequest request)
+    public ResponseEntity<String> updateCar(@RequestBody CarRestricted request)
     {
         return cars.update(request);
     }

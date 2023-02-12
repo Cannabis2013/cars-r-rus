@@ -1,8 +1,7 @@
 package dat3.car.services.members;
 
-import dat3.car.Entities.members.Member;
+import dat3.car.Entities.members.MemberRestricted;
 import dat3.car.SLA.Http.HttpResult;
-import dat3.car.dto.members.MemberRequest;
 import dat3.car.factories.members.MemberFactory;
 import dat3.car.repository.MemberRepository;
 import org.springframework.http.ResponseEntity;
@@ -18,21 +17,21 @@ public class Members {
 
     public ResponseEntity<String> all()
     {
-        var memberDetails = _repository.findAll();
-        var members = memberDetails.stream().map(m -> (Member) m).toList();
-        return _response.ok(members);
+        var unRestrictedMembers = _repository.findAll();
+        var restrictedMembers = unRestrictedMembers.stream().map(_factory::toRestricted).toList();
+        return _response.ok(restrictedMembers);
     }
 
     public ResponseEntity<String> get(String id)
     {
         var member = _repository.findById(id);
-        return member.isPresent()  ? _response.ok((Member) member.get()) : _response.notFound();
+        return member.isPresent()  ? _response.ok((MemberRestricted) member.get()) : _response.notFound();
     }
-    public ResponseEntity<String> add(MemberRequest request)
+    public ResponseEntity<String> add(MemberRestricted member)
     {
-        var member = _factory.fromRequest(request);
+        var internal = _factory.toUnrestricted(member);
         try {
-            _repository.save(member);
+            _repository.save(internal);
         } catch (Exception e){
             return _response.bad(e.getMessage());
         }
@@ -49,15 +48,15 @@ public class Members {
         return _response.ok();
     }
 
-    public ResponseEntity<String> update(MemberRequest request)
+    public ResponseEntity<String> update(MemberRestricted member)
     {
-        var optional = _repository.findById(request.getMemberId());
+        var optional = _repository.findById(member.getId());
         if(optional.isEmpty())
             return _response.notFound();
-        var updatedMember = _factory.fromUpdateRequest(request,optional.get());
+        var updated = _factory.toUnrestricted(member,optional.get());
         try {
-            _repository.deleteById(request.getMemberId());
-            _repository.save(updatedMember);
+            _repository.deleteById(member.getId());
+            _repository.save(updated);
         } catch (Exception e){
             return _response.notUpdated();
         }

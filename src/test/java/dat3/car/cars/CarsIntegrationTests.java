@@ -4,12 +4,8 @@ package dat3.car.cars;
     Tests that passes all layers
  */
 
-import dat3.car.Entities.cars.Car;
-import dat3.car.factories.cars.CarFactory;
-import dat3.car.repository.CarRepository;
 import dat3.car.services.cars.Cars;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +31,8 @@ public class CarsIntegrationTests {
     @Test
     public void addCarFromRequest()
     {
-        var req = _builder.teslaModelX();
-        var response = _cars.add(req);
+        var car = _builder.teslaModelX();
+        var response = _cars.add(car);
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
     }
 
@@ -47,20 +43,6 @@ public class CarsIntegrationTests {
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
-    private Car addTestCarToRepository(String brand, String model)
-    {
-        var car = new Car(brand,model,2490);
-        Car savedCar = null;
-        try {
-            savedCar = _repository.save(car);
-        } catch (Exception e){
-            fail();
-        }
-        return savedCar;
-    }
-
-    @Autowired
-    private CarRepository _repository;
     @Autowired
     private Cars _cars;
     @Autowired

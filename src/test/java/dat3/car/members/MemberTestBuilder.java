@@ -1,54 +1,41 @@
 package dat3.car.members;
 
-import dat3.car.Entities.members.MemberCompleteDetails;
-import dat3.car.Entities.members.Member;
+import dat3.car.Entities.members.MemberUnrestricted;
+import dat3.car.Entities.members.MemberRestricted;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class MemberTestBuilder {
-    public MemberCompleteDetails carlosZeca()
+    public MemberUnrestricted carlosZeca()
     {
-        var member = new MemberCompleteDetails();
-        updateUserDetails(member,"Sega_Megadrive","elmer1234","segaFCK2gmail.com");
+        var member = new MemberUnrestricted("Sega_Megadrive","FCKZeca");
         updatePersonalDetails(member,"Carlos","Zeca");
         updateAddressDetails(member,"Østerbrogade 23","København","2200");
+        member.getContactDetails().setEmail("segaFCK2gmail.com");
         return member;
     }
 
-    public MemberCompleteDetails rasmusFalk()
+    public MemberUnrestricted rasmusFalk()
     {
-        var member = new MemberCompleteDetails();
-        updateUserDetails(member,"Falken","falk1234","falk2gmail.com");
-        updatePersonalDetails(member,"Carlos","Zeca");
+        var member = new MemberUnrestricted("Falken","ParkenIsGreat");
+        updatePersonalDetails(member,"Rasmus","Falk");
         updateAddressDetails(member,"Falkonér Alle 23","Frederiksberg","2100");
+        member.getContactDetails().setEmail("falk@gmail.com");
         return member;
     }
 
-    private void updateUserDetails(Member member, String username, String password, String email)
-    {
-        member.setUsername(username);
-        member.setPassword(password);
-        member.setEmail(email);
-    }
-
-    private void updatePersonalDetails(Member member,String firstName, String lastName){
+    private void updatePersonalDetails(MemberRestricted member, String firstName, String lastName){
         member.getPersonalDetails().setFirstName(firstName);
         member.getPersonalDetails().setLastName(lastName);
     }
 
-    private void updateAddressDetails(Member member, String street, String city, String zip)
+    private void updateAddressDetails(MemberRestricted member, String street, String city, String zip)
     {
         member.getAddressDetails().setStreet(street);
         member.getAddressDetails().setZip(zip);
         member.getAddressDetails().setCity(city);
-        var phones = new HashMap<String,String>(){
-            {
-                put("Home","12345678");
-                put("Work","87654321");
-            }
-        };
-        member.getAddressDetails().setPhones(phones);
     }
 }

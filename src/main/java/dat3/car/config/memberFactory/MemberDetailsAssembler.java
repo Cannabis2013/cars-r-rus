@@ -1,6 +1,7 @@
 package dat3.car.config.memberFactory;
 
 import dat3.car.Entities.members.AddressDetails;
+import dat3.car.Entities.members.ContactDetails;
 import dat3.car.Entities.members.PersonalDetails;
 
 import java.util.Arrays;
@@ -11,13 +12,22 @@ public class MemberDetailsAssembler {
     static List<String> assembleColors(String... colors){
         return Arrays.stream(colors).toList();
     }
-    static AddressDetails assembleAddress(String street, String zip, String city, Map<String,String> phones)
+    static AddressDetails assembleAddress(String street, String zip, String city)
     {
         return new AddressDetails(){
             {
                 setStreet(street);
                 setZip(zip);
                 setCity(city);
+            }
+        };
+    }
+
+    static ContactDetails assembleContactDetails(String email,Map<String,String> phones)
+    {
+        return new ContactDetails(){
+            {
+                setEmail(email);
                 setPhones(phones);
             }
         };

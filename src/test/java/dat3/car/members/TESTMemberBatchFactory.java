@@ -1,6 +1,6 @@
 package dat3.car.members;
 
-import dat3.car.Entities.members.MemberCompleteDetails;
+import dat3.car.Entities.members.MemberUnrestricted;
 import dat3.car.Entities.members.PersonalDetails;
 import org.springframework.stereotype.Service;
 
@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MemberBatchFactory {
-    public List<MemberCompleteDetails> batch()
+public class TESTMemberBatchFactory {
+    public List<MemberUnrestricted> batch()
     {
-        var members = new ArrayList<MemberCompleteDetails>() {
+        var members = new ArrayList<MemberUnrestricted>() {
             {
-                add(new MemberCompleteDetails("MH2012", "MH2012@outlook.dk", "xrpuofni"));
-                add(new MemberCompleteDetails("Biker_Jens_1983", "Biker@gmail.com", "1234"));
-                add(new MemberCompleteDetails("Lider_Lone", "SwingerLone@outlook.dk", "SexMedDyrErOk"));
+                add(new MemberUnrestricted("MH2012", "xrpuofni"));
+                add(new MemberUnrestricted("Biker_Jens_1983", "1234"));
+                add(new MemberUnrestricted("Lider_Lone", "SexMedDyrErOk"));
             }
         };
         updateWithFavoriteColors(members);
@@ -24,7 +24,7 @@ public class MemberBatchFactory {
         return members;
     }
 
-    private void updateWithFavoriteColors(List<MemberCompleteDetails> members){
+    private void updateWithFavoriteColors(List<MemberUnrestricted> members){
         members.get(0).getFavoriteColors().add("red");
         members.get(0).getFavoriteColors().add("blue");
         members.get(1).getFavoriteColors().add("purple");
@@ -33,13 +33,13 @@ public class MemberBatchFactory {
         members.get(2).getFavoriteColors().add("gray");
     }
 
-    private void updateWithPhoneNumbers(List<MemberCompleteDetails> members)
+    private void updateWithPhoneNumbers(List<MemberUnrestricted> members)
     {
-        members.get(0).getAddressDetails().getPhones().put("Mobile","31165870");
-        members.get(0).getAddressDetails().getPhones().put("Work","32519881");
+        members.get(0).getContactDetails().getPhones().put("Mobile","31165870");
+        members.get(0).getContactDetails().getPhones().put("Work","32519881");
     }
 
-    private void updateWithPersonalDetails(List<MemberCompleteDetails> members)
+    private void updateWithPersonalDetails(List<MemberUnrestricted> members)
     {
         members.get(0).setPersonalDetails(new PersonalDetails("Martin","Hansen"));
         members.get(1).setPersonalDetails(new PersonalDetails("Jens","Peter"));

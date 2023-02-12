@@ -1,15 +1,14 @@
 package dat3.car.cars;
 
-import dat3.car.Entities.cars.Car;
+import dat3.car.Entities.cars.CarUnrestricted;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @Service
-public class CarBatchFactory {
-    public List<Car> batch()
+public class TESTCarBatchFactory {
+    public List<CarUnrestricted> batch()
     {
         return new ArrayList<>() {
             {
@@ -22,10 +21,10 @@ public class CarBatchFactory {
         };
     }
 
-    private Car car(String brand, String model)
+    private CarUnrestricted car(String brand, String model)
     {
         var rand = new Random();
         var price = rand.nextDouble(9000) + 1000;
-        return new Car(brand,model,price);
+        return new CarUnrestricted(brand,model,price);
     }
 }
