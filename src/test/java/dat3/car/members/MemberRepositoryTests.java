@@ -1,6 +1,7 @@
 package dat3.car.members;
 
 import dat3.car.Entities.members.MemberRestricted;
+import dat3.car.members.builders.MemberTestBuilder;
 import dat3.car.repository.MemberRepository;
 import org.junit.jupiter.api.*;
 import org.opentest4j.AssertionFailedError;
@@ -21,12 +22,7 @@ public class MemberRepositoryTests {
     {
         _initializor.clear();
     }
-    @BeforeEach
-    public void setup()
-    {
-        var member = _builder.carlosZeca();
-        MemberRestricted saved = assertDoesNotThrow(() -> _repository.save(member));
-    }
+
     @Test
     public void addMemberToDatabase(){
         var member = _builder.rasmusFalk();
@@ -48,11 +44,6 @@ public class MemberRepositoryTests {
     @Test
     public void updateMemberFromDatabase()
     {
-        /*
-            This is a lazy implementation and is due to a complex entity structure.
-
-            Another implementation is needed as this may cause performance issues on a larger scale I assume
-         */
         var zeca = _builder.carlosZeca();
         var fromMemory = _initializor.randomMember(); // Get a random member from memory
         var fromDb = _repository.findByUsernameLike(fromMemory.getUsername()).orElseThrow(AssertionFailedError::new); // Get the equivalent member from database

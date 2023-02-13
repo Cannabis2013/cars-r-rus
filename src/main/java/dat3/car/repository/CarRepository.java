@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository
 public interface CarRepository extends JpaRepository<CarUnrestricted,String> {
     @Transactional
     @Modifying

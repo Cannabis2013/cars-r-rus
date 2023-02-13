@@ -1,7 +1,7 @@
 package dat3.car.services.members;
 
 import dat3.car.Entities.members.MemberRestricted;
-import dat3.car.SLA.Http.HttpResult;
+import dat3.car.SLA.Http.IHttpResult;
 import dat3.car.factories.members.MemberFactory;
 import dat3.car.repository.MemberRepository;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Members {
-    public Members(MemberFactory factory, MemberRepository repository, HttpResult<String> response) {
+    public Members(MemberFactory factory, MemberRepository repository, IHttpResult<String> response) {
         _factory = factory;
         _repository = repository;
         _response = response;
@@ -25,7 +25,9 @@ public class Members {
     public ResponseEntity<String> get(String id)
     {
         var member = _repository.findById(id);
-        return member.isPresent()  ? _response.ok((MemberRestricted) member.get()) : _response.notFound();
+        if(member.isEmpty())
+            return _response.notFound();
+        return _response.ok((MemberRestricted) member.get());
     }
     public ResponseEntity<String> add(MemberRestricted member)
     {
@@ -33,7 +35,7 @@ public class Members {
         try {
             _repository.save(internal);
         } catch (Exception e){
-            return _response.bad(e.getMessage());
+            return _response.badRequest(e.getMessage());
         }
         return _response.created(member);
     }
@@ -43,7 +45,7 @@ public class Members {
         try {
             _repository.deleteById(id);
         } catch (Exception e){
-            return _response.bad("Failed to remove resource");
+            return _response.badRequest("Failed to remove resource");
         }
         return _response.ok();
     }
@@ -65,5 +67,5 @@ public class Members {
 
     private final MemberFactory _factory;
     private final MemberRepository _repository;
-    private final HttpResult<String> _response;
+    private final IHttpResult<String> _response;
 }

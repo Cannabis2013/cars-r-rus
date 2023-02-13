@@ -1,11 +1,11 @@
-package dat3.car.config.memberFactory;
+package dat3.car.config.members;
 
 import dat3.car.Entities.members.MemberUnrestricted;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
-import static dat3.car.config.memberFactory.MemberDetailsAssembler.*;
+import static dat3.car.config.members.MemberDetailsAssembler.*;
 
 @Service
 public class ConfigPredefinedMembers {

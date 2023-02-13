@@ -1,0 +1,43 @@
+package dat3.car.config.cars;
+
+import dat3.car.Entities.cars.CarUnrestricted;
+import dat3.car.Entities.reservations.Reservation;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+@Service
+public class CarBatchFactory {
+    public List<CarUnrestricted> batch()
+    {
+        return new ArrayList<>() {
+            {
+                add(car("Volkswagen", "ID.4",false));
+                add(car("Ford", "Escord RS2000",false));
+                add(car("Nissan", "Shitbox model 1983",false));
+                add(car("Lada","500 classic",true));
+                add(car("Fiat","Duna 70",false));
+            }
+        };
+    }
+
+    private CarUnrestricted car(String brand, String model, boolean addReservation)
+    {
+        var rand = new Random();
+        var price = rand.nextDouble(9000) + 1000;
+        var car = new CarUnrestricted(brand,model,price);
+        if(addReservation)
+            car.getReservations().add(reservation(car));
+        return car;
+    }
+
+    private Reservation reservation(CarUnrestricted car){
+        var start = LocalDateTime.of(2023,6,3,12,30);
+        var end = LocalDateTime.of(2023,9,3,12,30);
+        return Reservation.builder().start(start).end(end)
+                .memberId("").car(car).build();
+    }
+}

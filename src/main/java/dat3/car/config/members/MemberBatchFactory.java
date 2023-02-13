@@ -1,4 +1,4 @@
-package dat3.car.config.memberFactory;
+package dat3.car.config.members;
 
 import dat3.car.Entities.members.MemberUnrestricted;
 import org.springframework.stereotype.Service;

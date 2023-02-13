@@ -29,7 +29,7 @@ public class CarsIntegrationTests {
         _initializor.clear();
     }
     @Test
-    public void addCarFromRequest()
+    public void addCarToDatabase()
     {
         var car = _builder.teslaModelX();
         var response = _cars.add(car);

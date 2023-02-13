@@ -1,17 +1,15 @@
 package dat3.car.services.cars;
 
 import dat3.car.Entities.cars.CarRestricted;
-import dat3.car.Entities.cars.CarUnrestricted;
-import dat3.car.SLA.Http.HttpResult;
+import dat3.car.SLA.Http.IHttpResult;
 import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.CarRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class Cars {
-    public Cars(HttpResult<String> response, CarRepository carRepository, CarFactory factory) {
+    public Cars(IHttpResult<String> response, CarRepository carRepository, CarFactory factory) {
         _factory = factory;
         _response = response;
         _carRepository = carRepository;
@@ -26,12 +24,7 @@ public class Cars {
 
     public ResponseEntity<String> get(String id)
     {
-        Optional<CarUnrestricted> optional;
-        try {
-            optional = _carRepository.findById(id);
-        } catch (Exception e){
-            return _response.bad(e.getMessage());
-        }
+        var optional = _carRepository.findById(id);
         if(optional.isEmpty())
             return _response.notFound();
         var car = (CarRestricted) optional.get();
@@ -44,18 +37,18 @@ public class Cars {
         try {
             _carRepository.save(unrestricted);
         } catch (Exception e){
-            return _response.bad(e.getMessage());
+            return _response.badRequest(e.getMessage());
         }
         return _response.created(unrestricted);
     }
 
     public ResponseEntity<String> remove(String id){
+        if(!_carRepository.existsById(id))
+            return _response.notFound();
         try {
-            if(!_carRepository.existsById(id))
-                return _response.notFound();
             _carRepository.deleteById(id);
         } catch (Exception e){
-            return _response.bad("Failed to remove resource");
+            return _response.badRequest("Failed to remove resource");
         }
         return _response.ok();
     }
@@ -65,12 +58,12 @@ public class Cars {
         try {
             _carRepository.updateCarDetails(request.getBrand(),request.getModel(),request.getId());
         }catch (Exception e){
-            return _response.bad("Failed to update resource");
+            return _response.badRequest("Failed to update resource");
         }
         return _response.ok();
     }
 
-    private final HttpResult<String> _response;
+    private final IHttpResult<String> _response;
     private final CarRepository _carRepository;
     private final CarFactory _factory;
 }
