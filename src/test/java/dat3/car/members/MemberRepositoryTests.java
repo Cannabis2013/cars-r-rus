@@ -6,21 +6,22 @@ import dat3.car.repository.MemberRepository;
 import org.junit.jupiter.api.*;
 import org.opentest4j.AssertionFailedError;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@DataJpaTest
 public class MemberRepositoryTests {
+
     @BeforeEach
     public void init(){
-        _initializor.init();
+        _initializor.init(_repository);
     }
 
     @AfterEach
     public void cleanUp()
     {
-        _initializor.clear();
+        _initializor.clear(_repository);
     }
 
     @Test
@@ -49,7 +50,6 @@ public class MemberRepositoryTests {
         var fromDb = _repository.findByUsernameLike(fromMemory.getUsername()).orElseThrow(AssertionFailedError::new); // Get the equivalent member from database
         fromDb.getPersonalDetails().setFirstName(zeca.getPersonalDetails().getFirstName());
         fromDb.getPersonalDetails().setLastName(zeca.getPersonalDetails().getLastName());
-        _repository.delete(fromDb);
         MemberRestricted saved = _repository.save(fromDb);
         var updatedFromDb = _repository.findById(saved.getId()).orElseThrow(AssertionFailedError::new);
         assertEquals(zeca.getPersonalDetails().getFirstName(),updatedFromDb.getPersonalDetails().getFirstName());
@@ -58,8 +58,8 @@ public class MemberRepositoryTests {
 
     @Autowired
     private MemberRepository _repository;
-    @Autowired
-    private MembersDbInitializor _initializor;
-    @Autowired
-    private MemberTestBuilder _builder;
+
+    private final MembersDbInitializor _initializor = new MembersDbInitializor();
+
+    private final MemberTestBuilder _builder = new MemberTestBuilder();
 }

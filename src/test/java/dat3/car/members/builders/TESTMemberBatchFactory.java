@@ -9,8 +9,8 @@ import java.util.List;
 
 @Service
 public class TESTMemberBatchFactory {
-    public TESTMemberBatchFactory(MemberTestBuilder builder) {
-        _builder = builder;
+    public TESTMemberBatchFactory() {
+        _builder = new MemberTestBuilder();
     }
 
     public List<MemberUnrestricted> batch()

@@ -1,6 +1,7 @@
 package dat3.car.members;
 
 import dat3.car.Entities.members.MemberRestricted;
+import dat3.car.members.builders.MemberTestBuilder;
 import dat3.car.members.builders.TESTMemberBatchFactory;
 import dat3.car.repository.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -9,23 +10,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
-@Service
 public class MembersDbInitializor {
 
-    public MembersDbInitializor(MemberRepository repository, TESTMemberBatchFactory batchFactory) {
-        _repository = repository;
-        _batchFactory = batchFactory;
+    public MembersDbInitializor() {
+        _batchFactory = new TESTMemberBatchFactory();
     }
 
-    public void init(){
-        System.out.println("Init run");
+    public void init(MemberRepository repository){
         var members = _batchFactory.batch();
-        _repository.saveAll(members);
+        repository.saveAll(members);
     }
 
-    public void clear(){
-        System.out.println("Clear run");
-        _repository.deleteAll();
+    public void clear(MemberRepository repository){
+        repository.deleteAll();
     }
 
     public MemberRestricted randomMember()
@@ -35,6 +32,5 @@ public class MembersDbInitializor {
         return members.get(0);
     }
 
-    private final MemberRepository _repository;
     private final TESTMemberBatchFactory _batchFactory;
 }

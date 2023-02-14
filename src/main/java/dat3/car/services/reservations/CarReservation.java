@@ -48,11 +48,7 @@ public class CarReservation {
     private boolean alreadyReserved(List<Reservation> reservations, LocalDateTime start, LocalDateTime end)
     {
         for (var reservation : reservations){
-            var s = reservation.getStart();
-            var e = reservation.getEnd();
-            var r1 = s.isAfter(start) && s.isAfter(end);
-            var r2 = e.isBefore(start) && e.isBefore(end);
-            if(!r1 && !r2)
+            if(!reservation.getStart().isAfter(end) && !reservation.getEnd().isBefore(start))
                 return true;
         }
         return false;
