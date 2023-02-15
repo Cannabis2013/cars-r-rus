@@ -1,6 +1,6 @@
 package dat3.car.config;
 
-import dat3.car.repository.UserRepository;
+import dat3.car.repository.MemberRepository;
 import dat3.car.services.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -53,5 +53,5 @@ public class SpringSecurity {
     }
 
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository userRepository;
 }

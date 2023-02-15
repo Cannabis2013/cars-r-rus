@@ -1,6 +1,6 @@
 package dat3.car.entities.members;
 
-import dat3.car.entities.base.EntityModel;
+import dat3.car.entities.security.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "member")
-public class Member extends EntityModel {
+public class Member extends User {
     public Member(String username, String password) {
         this.username = username;
         this.password = password;
@@ -39,13 +39,8 @@ public class Member extends EntityModel {
     @ElementCollection
     @JoinColumn(name = "member_favorite_color",referencedColumnName = "member_id")
     private final List<String> favoriteColors = new ArrayList<>();
-    @Column(unique = true)
-    private String username;
 
     private int ranking;
-
-    @Column(nullable = false,columnDefinition = "varchar(255)  default '1234'")
-    private String password;
 
     @CreationTimestamp
     private LocalDateTime created;
