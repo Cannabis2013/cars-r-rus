@@ -1,7 +1,7 @@
 package dat3.car.factories.members;
 
-import dat3.car.Entities.members.MemberUnrestricted;
-import dat3.car.Entities.members.MemberRestricted;
+import dat3.car.entities.members.MemberUnrestricted;
+import dat3.car.entities.members.MemberRestricted;
 import org.springframework.stereotype.Service;
 
 @Service

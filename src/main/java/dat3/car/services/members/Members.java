@@ -1,6 +1,6 @@
 package dat3.car.services.members;
 
-import dat3.car.Entities.members.MemberRestricted;
+import dat3.car.entities.members.MemberRestricted;
 import dat3.car.SLA.Http.IHttpResult;
 import dat3.car.factories.members.MemberFactory;
 import dat3.car.repository.MemberRepository;

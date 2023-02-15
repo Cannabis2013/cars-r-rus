@@ -4,6 +4,7 @@ package dat3.car.cars;
     Tests that passes all layers
  */
 
+import dat3.car.dto.cars.CarsAddRequest;
 import dat3.car.repository.CarRepository;
 import dat3.car.services.cars.Cars;
 import org.junit.jupiter.api.AfterEach;
@@ -17,6 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class CarsIntegrationTests {
+    public CarsIntegrationTests() {
+        _initializor = new CarsDbInitializor();
+    }
+
     @BeforeEach
     public void init()
     {
@@ -31,7 +36,7 @@ public class CarsIntegrationTests {
     @Test
     public void addCarToDatabase()
     {
-        var car = _builder.teslaModelX();
+        var car = new CarsAddRequest("Tesla ","Modex X",25,0);
         var response = _cars.add(car);
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
     }
@@ -46,9 +51,7 @@ public class CarsIntegrationTests {
     @Autowired
     private Cars _cars;
 
-    private final CarBatchBuilder _builder = new CarBatchBuilder();
-
-    private final CarsDbInitializor _initializor = new CarsDbInitializor();
+    private final CarsDbInitializor _initializor;
     @Autowired
     private CarRepository _repository;
 }

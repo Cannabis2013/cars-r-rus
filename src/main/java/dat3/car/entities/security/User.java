@@ -1,4 +1,4 @@
-package dat3.car.Entities.security;
+package dat3.car.entities.security;
 
 import jakarta.persistence.*;
 import lombok.Getter;

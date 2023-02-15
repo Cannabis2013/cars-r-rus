@@ -1,6 +1,7 @@
 package dat3.car.api;
 
-import dat3.car.Entities.cars.CarRestricted;
+import dat3.car.dto.cars.CarUpdateRequest;
+import dat3.car.dto.cars.CarsAddRequest;
 
 import dat3.car.dto.reservations.ReservationRequest;
 import dat3.car.services.cars.Cars;
@@ -21,7 +22,7 @@ public class CarsApi {
     }
 
     @PostMapping("/cars/addCar")
-    public ResponseEntity<String> addCar(@RequestBody CarRestricted request)
+    public ResponseEntity<String> addCar(@RequestBody CarsAddRequest request)
     {
         return _cars.add(request);
     }
@@ -38,7 +39,7 @@ public class CarsApi {
     }
 
     @PatchMapping("/cars/updateCar")
-    public ResponseEntity<String> updateCar(@RequestBody CarRestricted request)
+    public ResponseEntity<String> updateCar(@RequestBody CarUpdateRequest request)
     {
         return _cars.update(request);
     }

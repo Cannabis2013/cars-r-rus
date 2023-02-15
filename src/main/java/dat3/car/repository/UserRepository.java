@@ -1,6 +1,6 @@
 package dat3.car.repository;
 
-import dat3.car.Entities.security.User;
+import dat3.car.entities.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

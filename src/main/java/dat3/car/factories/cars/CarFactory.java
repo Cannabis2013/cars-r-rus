@@ -1,17 +1,17 @@
 package dat3.car.factories.cars;
 
-import dat3.car.Entities.cars.CarRestricted;
-import dat3.car.Entities.cars.CarUnrestricted;
+import dat3.car.dto.cars.CarResponse;
+import dat3.car.dto.cars.CarsAddRequest;
+import dat3.car.entities.cars.Car;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CarFactory {
-    public CarUnrestricted toUnrestricted(CarRestricted car){
-        var unrestricted = new CarUnrestricted();
-        unrestricted.setId(car.getId());
-        unrestricted.setPricePrDay(car.getPricePrDay());
-        unrestricted.setBrand(car.getBrand());
-        unrestricted.setModel(car.getModel());
-        return unrestricted;
+    public Car fromAddRequest(CarsAddRequest request){
+        return new Car(request.getBrand(),request.getModel(),request.getPricePrDay());
+    }
+
+    public CarResponse toResponse(Car car){
+        return new CarResponse(car.getId(),car.getBrand(),car.getModel(),car.getPricePrDay());
     }
 }

@@ -1,6 +1,6 @@
-package dat3.car.Entities.members;
+package dat3.car.entities.members;
 
-import dat3.car.Entities.base.EntityModel;
+import dat3.car.entities.base.EntityModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 

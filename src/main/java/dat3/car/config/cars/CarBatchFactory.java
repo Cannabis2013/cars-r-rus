@@ -1,7 +1,7 @@
 package dat3.car.config.cars;
 
-import dat3.car.Entities.cars.CarUnrestricted;
-import dat3.car.Entities.reservations.Reservation;
+import dat3.car.entities.cars.Car;
+import dat3.car.entities.reservations.Reservation;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ import java.util.Random;
 
 @Service
 public class CarBatchFactory {
-    public List<CarUnrestricted> batch()
+    public List<Car> batch()
     {
         return new ArrayList<>() {
             {
@@ -24,17 +24,17 @@ public class CarBatchFactory {
         };
     }
 
-    private CarUnrestricted car(String brand, String model, boolean addReservation)
+    private Car car(String brand, String model, boolean addReservation)
     {
         var rand = new Random();
         var price = rand.nextDouble(9000) + 1000;
-        var car = new CarUnrestricted(brand,model,price);
+        var car = new Car(brand,model,price);
         if(addReservation)
             car.getReservations().add(reservation(car));
         return car;
     }
 
-    private Reservation reservation(CarUnrestricted car){
+    private Reservation reservation(Car car){
         var start = LocalDateTime.of(2023,6,3,12,30);
         var end = LocalDateTime.of(2023,9,3,12,30);
         return Reservation.builder().start(start).end(end)

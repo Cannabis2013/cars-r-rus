@@ -1,8 +1,8 @@
 package dat3.car.api;
 
 
-import dat3.car.Entities.members.MemberUnrestricted;
-import dat3.car.Entities.members.MemberRestricted;
+import dat3.car.entities.members.MemberUnrestricted;
+import dat3.car.entities.members.MemberRestricted;
 import dat3.car.services.members.Members;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

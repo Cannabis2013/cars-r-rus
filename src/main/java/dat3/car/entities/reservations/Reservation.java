@@ -1,8 +1,7 @@
-package dat3.car.Entities.reservations;
+package dat3.car.entities.reservations;
 
-import dat3.car.Entities.base.EntityModel;
-import dat3.car.Entities.cars.CarUnrestricted;
-import dat3.car.Entities.members.MemberUnrestricted;
+import dat3.car.entities.base.EntityModel;
+import dat3.car.entities.cars.Car;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
@@ -21,7 +20,7 @@ public class Reservation extends EntityModel {
     private LocalDateTime end;
 
     @ManyToOne
-    private CarUnrestricted car;
+    private Car car;
 
     private String memberId;
 }

@@ -1,11 +1,6 @@
-package dat3.car.Entities.base;
+package dat3.car.entities.base;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.lang.annotation.Inherited;
-import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class EntityModel {

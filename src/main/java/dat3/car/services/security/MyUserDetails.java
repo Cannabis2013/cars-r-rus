@@ -1,6 +1,6 @@
 package dat3.car.services.security;
 
-import dat3.car.Entities.security.User;
+import dat3.car.entities.security.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

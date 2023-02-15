@@ -1,8 +1,8 @@
 package dat3.car.config.members;
 
-import dat3.car.Entities.members.AddressDetails;
-import dat3.car.Entities.members.ContactDetails;
-import dat3.car.Entities.members.PersonalDetails;
+import dat3.car.entities.members.AddressDetails;
+import dat3.car.entities.members.ContactDetails;
+import dat3.car.entities.members.PersonalDetails;
 
 import java.util.Arrays;
 import java.util.List;

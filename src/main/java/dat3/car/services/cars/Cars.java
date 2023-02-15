@@ -1,12 +1,12 @@
 package dat3.car.services.cars;
 
-import dat3.car.Entities.cars.CarRestricted;
 import dat3.car.SLA.Http.IHttpResult;
+import dat3.car.dto.cars.CarUpdateRequest;
+import dat3.car.dto.cars.CarsAddRequest;
 import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.CarRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class Cars {
@@ -19,7 +19,7 @@ public class Cars {
     public ResponseEntity<String> all()
     {
         var cars = _carRepository.findAll();
-        var response = cars.stream().map(c -> (CarRestricted) c).toList();
+        var response = cars.stream().map(_factory::toResponse).toList();
         return _response.ok(response);
     }
 
@@ -28,13 +28,13 @@ public class Cars {
         var optional = _carRepository.findById(id);
         if(optional.isEmpty())
             return _response.notFound();
-        var car = (CarRestricted) optional.get();
+        var car =  _factory.toResponse(optional.get());
         return _response.ok(car);
     }
 
-    public ResponseEntity<String> add(CarRestricted restricted)
+    public ResponseEntity<String> add(CarsAddRequest restricted)
     {
-        var unrestricted = _factory.toUnrestricted(restricted);
+        var unrestricted = _factory.fromAddRequest(restricted);
         try {
             _carRepository.save(unrestricted);
         } catch (Exception e){
@@ -54,7 +54,7 @@ public class Cars {
         return _response.ok();
     }
 
-    public ResponseEntity<String> update(CarRestricted request)
+    public ResponseEntity<String> update(CarUpdateRequest request)
     {
         try {
             _carRepository.updateCarDetails(request.getBrand(),request.getModel(),request.getId());

@@ -1,7 +1,6 @@
 package dat3.car.members.builders;
 
-import dat3.car.Entities.members.MemberUnrestricted;
-import dat3.car.Entities.members.PersonalDetails;
+import dat3.car.entities.members.MemberUnrestricted;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package dat3.car.members;
 
-import dat3.car.Entities.members.MemberRestricted;
+import dat3.car.entities.members.MemberRestricted;
 import dat3.car.members.builders.MemberTestBuilder;
 import dat3.car.repository.MemberRepository;
 import org.junit.jupiter.api.*;
