@@ -25,7 +25,7 @@ public class ContactDetails extends EntityModel {
     }
 
     @OneToOne(mappedBy = "contactDetails")
-    private MemberUnrestricted member;
+    private Member member;
 
     @ElementCollection
     @MapKeyColumn(name = "description")

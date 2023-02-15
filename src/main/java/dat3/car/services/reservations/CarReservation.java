@@ -10,6 +10,7 @@ import dat3.car.repository.MemberRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class CarReservation {
         return _result.created(reservation);
     }
 
-    private boolean alreadyReserved(List<Reservation> reservations, LocalDateTime start, LocalDateTime end)
+    private boolean alreadyReserved(List<Reservation> reservations, LocalDate start, LocalDate end)
     {
         for (var reservation : reservations){
             if(!reservation.getStart().isAfter(end) && !reservation.getEnd().isBefore(start))

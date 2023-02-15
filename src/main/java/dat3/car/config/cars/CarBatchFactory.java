@@ -4,6 +4,7 @@ import dat3.car.entities.cars.Car;
 import dat3.car.entities.reservations.Reservation;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +36,8 @@ public class CarBatchFactory {
     }
 
     private Reservation reservation(Car car){
-        var start = LocalDateTime.of(2023,6,3,12,30);
-        var end = LocalDateTime.of(2023,9,3,12,30);
+        var start = LocalDate.of(2023,6,3);
+        var end = LocalDate.of(2023,9,3);
         return Reservation.builder().start(start).end(end)
                 .memberId("").car(car).build();
     }

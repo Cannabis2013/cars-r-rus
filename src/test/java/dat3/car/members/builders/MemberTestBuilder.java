@@ -1,15 +1,14 @@
 package dat3.car.members.builders;
 
-import dat3.car.entities.members.MemberRestricted;
-import dat3.car.entities.members.MemberUnrestricted;
+import dat3.car.entities.members.Member;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 
 @Service
 public class MemberTestBuilder {
-    public MemberUnrestricted carlosZeca()
+    public Member carlosZeca()
     {
-        var member = new MemberUnrestricted("Sega_Megadrive","FCKZeca");
+        var member = new Member("Sega_Megadrive","FCKZeca");
         updatePersonalDetails(member,"Carlos","Zeca");
         updateAddressDetails(member,"Østerbrogade 23","København","2200");
         member.getFavoriteColors().add("white");
@@ -18,9 +17,9 @@ public class MemberTestBuilder {
         return member;
     }
 
-    public MemberUnrestricted rasmusFalk()
+    public Member rasmusFalk()
     {
-        var member = new MemberUnrestricted("Falken","ParkenIsGreat");
+        var member = new Member("Falken","ParkenIsGreat");
         updatePersonalDetails(member,"Rasmus","Falk");
         updateAddressDetails(member,"Falkonér Alle 23","Frederiksberg","2100");
         member.getFavoriteColors().add("white");
@@ -29,9 +28,9 @@ public class MemberTestBuilder {
         return member;
     }
 
-    public MemberUnrestricted LiderLone()
+    public Member LiderLone()
     {
-        var member = new MemberUnrestricted("LoneLiderlig1965","SexMedDyrErOk");
+        var member = new Member("LoneLiderlig1965","SexMedDyrErOk");
         updatePersonalDetails(member,"Lone","Frandsen");
         updateAddressDetails(member,"Øresundsvej 26B 3.th","Sundby","2300S");
         member.getContactDetails().setEmail("Lider_Lone@yahoo.dk");
@@ -46,9 +45,9 @@ public class MemberTestBuilder {
         return member;
     }
 
-    public MemberUnrestricted bikerJens()
+    public Member bikerJens()
     {
-        var member = new MemberUnrestricted("HarleyRytteren","incorrect");
+        var member = new Member("HarleyRytteren","incorrect");
         updatePersonalDetails(member,"Jens","Romundstad");
         updateAddressDetails(member,"Halsøvej 23","Roskilde","4000");
         member.getContactDetails().setEmail("harley_rytteren@outlook.dk");
@@ -63,8 +62,8 @@ public class MemberTestBuilder {
         return member;
     }
 
-    public MemberUnrestricted mh2012(){
-        var member = new MemberUnrestricted("MH2012","xrpuofni");
+    public Member mh2012(){
+        var member = new Member("MH2012","xrpuofni");
         updatePersonalDetails(member,"Martin","Hansen");
         updateAddressDetails(member,"Hyben Alle 56 1.MF","Kastrup","2770");
         member.getContactDetails().setEmail("MH2012@outlook.dk");
@@ -78,12 +77,12 @@ public class MemberTestBuilder {
         return member;
     }
 
-    private void updatePersonalDetails(MemberRestricted member, String firstName, String lastName){
+    private void updatePersonalDetails(Member member, String firstName, String lastName){
         member.getPersonalDetails().setFirstName(firstName);
         member.getPersonalDetails().setLastName(lastName);
     }
 
-    private void updateAddressDetails(MemberRestricted member, String street, String city, String zip)
+    private void updateAddressDetails(Member member, String street, String city, String zip)
     {
         member.getAddressDetails().setStreet(street);
         member.getAddressDetails().setZip(zip);

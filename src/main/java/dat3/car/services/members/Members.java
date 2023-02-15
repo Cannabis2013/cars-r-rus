@@ -1,7 +1,8 @@
 package dat3.car.services.members;
 
-import dat3.car.entities.members.MemberRestricted;
 import dat3.car.SLA.Http.IHttpResult;
+import dat3.car.dto.members.MemberAddRequest;
+import dat3.car.dto.members.MemberUpdateRequest;
 import dat3.car.factories.members.MemberFactory;
 import dat3.car.repository.MemberRepository;
 import org.springframework.http.ResponseEntity;
@@ -9,62 +10,67 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Members {
-    public Members(MemberFactory factory, MemberRepository repository, IHttpResult<String> response) {
+    public Members(MemberFactory factory, MemberUpdate update, MemberRepository repository, IHttpResult<String> response) {
         _factory = factory;
+        _update = update;
         _repository = repository;
-        _response = response;
+        _result = response;
     }
 
     public ResponseEntity<String> all()
     {
-        var unRestrictedMembers = _repository.findAll();
-        var restrictedMembers = unRestrictedMembers.stream().map(_factory::toRestricted).toList();
-        return _response.ok(restrictedMembers);
+        var members = _repository.findAll();
+        var response = members.stream().map(_factory::toFetchResponse).toList();
+        return _result.ok(response);
     }
 
     public ResponseEntity<String> get(String id)
     {
         var member = _repository.findById(id);
         if(member.isEmpty())
-            return _response.notFound();
-        return _response.ok((MemberRestricted) member.get());
+            return _result.notFound();
+        return _result.ok(member.get());
     }
-    public ResponseEntity<String> add(MemberRestricted member)
+    public ResponseEntity<String> add(MemberAddRequest request)
     {
-        var internal = _factory.toUnrestricted(member);
+        var member = _factory.fromAddRequest(request);
         try {
-            _repository.save(internal);
+            _repository.save(member);
         } catch (Exception e){
-            return _response.badRequest(e.getMessage());
+            return _result.badRequest(e.getMessage());
         }
-        return _response.created(member);
+        return _result.created(member);
     }
 
     public ResponseEntity<String> remove(String id)
     {
         try {
+            var member = _repository.findById(id).orElse(null);
+            if(member == null)
+                return _result.notFound("No member with given id found");
             _repository.deleteById(id);
         } catch (Exception e){
-            return _response.badRequest("Failed to remove resource");
+            return _result.badRequest("Failed to remove resource");
         }
-        return _response.ok();
+        return _result.ok();
     }
 
-    public ResponseEntity<String> update(MemberRestricted member)
+    public ResponseEntity<String> update(MemberUpdateRequest contactDetails)
     {
-        var optional = _repository.findById(member.getId());
-        if(optional.isEmpty())
-            return _response.notFound();
-        var updated = _factory.toUnrestricted(member,optional.get());
+        var member = _repository.findById(contactDetails.getId()).orElse(null);
+        if(member == null)
+            return _result.notFound();
+        var updated = _update.update(contactDetails,member);
         try {
             _repository.save(updated);
         } catch (Exception e){
-            return _response.notUpdated();
+            return _result.notUpdated();
         }
-        return _response.ok();
+        return _result.ok();
     }
 
     private final MemberFactory _factory;
+    private final MemberUpdate _update;
     private final MemberRepository _repository;
-    private final IHttpResult<String> _response;
+    private final IHttpResult<String> _result;
 }

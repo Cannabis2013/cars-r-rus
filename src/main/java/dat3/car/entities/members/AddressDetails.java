@@ -39,7 +39,7 @@ public class AddressDetails extends EntityModel {
     }
 
     @OneToOne(mappedBy = "addressDetails")
-    private MemberUnrestricted member;
+    private Member member;
 
     private String street;
     private String city;

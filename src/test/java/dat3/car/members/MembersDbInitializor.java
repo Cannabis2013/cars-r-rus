@@ -1,6 +1,6 @@
 package dat3.car.members;
 
-import dat3.car.entities.members.MemberRestricted;
+import dat3.car.entities.members.Member;
 import dat3.car.members.builders.TESTMemberBatchFactory;
 import dat3.car.repository.MemberRepository;
 
@@ -21,7 +21,7 @@ public class MembersDbInitializor {
         repository.deleteAll();
     }
 
-    public MemberRestricted randomMember()
+    public Member randomMember()
     {
         var members = _batchFactory.batch();
         Collections.shuffle(members);

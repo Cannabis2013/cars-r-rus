@@ -1,6 +1,6 @@
 package dat3.car.config.members;
 
-import dat3.car.entities.members.MemberUnrestricted;
+import dat3.car.entities.members.Member;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ public class MemberBatchFactory {
         _factory = factory;
     }
 
-    public List<MemberUnrestricted> batch()
+    public List<Member> batch()
     {
-        var members = new ArrayList<MemberUnrestricted>() {
+        var members = new ArrayList<Member>() {
             {
                 add(_factory.mh2012());
                 add(_factory.bikerJens());

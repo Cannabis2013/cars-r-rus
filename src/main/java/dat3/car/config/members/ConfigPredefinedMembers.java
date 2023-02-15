@@ -1,6 +1,6 @@
 package dat3.car.config.members;
 
-import dat3.car.entities.members.MemberUnrestricted;
+import dat3.car.entities.members.Member;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -9,9 +9,9 @@ import static dat3.car.config.members.MemberDetailsAssembler.*;
 
 @Service
 public class ConfigPredefinedMembers {
-    public MemberUnrestricted mh2012()
+    public Member mh2012()
     {
-        var member = new MemberUnrestricted("MH2012","xrpuofni");
+        var member = new Member("MH2012","xrpuofni");
         var colors = assembleColors("white","blue");
         member.getFavoriteColors().addAll(colors);
         var address = assembleAddress("Hyben Alle 56 1.MF","2770","Kastrup");
@@ -24,8 +24,8 @@ public class ConfigPredefinedMembers {
         return member;
     }
 
-    public MemberUnrestricted loneLiderlig(){
-        var member = new MemberUnrestricted("LoneLiderlig1964", "SexMedDyrErOk");
+    public Member loneLiderlig(){
+        var member = new Member("LoneLiderlig1964", "SexMedDyrErOk");
         var colors = assembleColors("red","purple","black","green");
         member.getFavoriteColors().addAll(colors);
         var address = assembleAddress("Højdevej 110 (du ved, nede i kælderen)","2300S","Sundby");
@@ -38,8 +38,8 @@ public class ConfigPredefinedMembers {
         return member;
     }
 
-    public MemberUnrestricted bikerJens(){
-        var member = new MemberUnrestricted("BikerJens","HarleySucks");
+    public Member bikerJens(){
+        var member = new Member("BikerJens","HarleySucks");
         var colors = assembleColors("gray","black");
         member.getFavoriteColors().addAll(colors);
         var address = assembleAddress("Tjærevej 52","4000","Roskilde");
