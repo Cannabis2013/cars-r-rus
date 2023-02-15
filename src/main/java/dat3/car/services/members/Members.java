@@ -57,7 +57,6 @@ public class Members {
             return _response.notFound();
         var updated = _factory.toUnrestricted(member,optional.get());
         try {
-            _repository.deleteById(member.getId());
             _repository.save(updated);
         } catch (Exception e){
             return _response.notUpdated();

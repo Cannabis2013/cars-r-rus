@@ -4,6 +4,7 @@ package dat3.car.cars;
     Tests that passes all layers
  */
 
+import dat3.car.repository.CarRepository;
 import dat3.car.services.cars.Cars;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,20 +14,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 public class CarsIntegrationTests {
     @BeforeEach
     public void init()
     {
-        _initializor.init();
+        _initializor.init(_repository);
     }
 
     @AfterEach
     public void cleanUp()
     {
-        _initializor.clear();
+        _initializor.clear(_repository);
     }
     @Test
     public void addCarToDatabase()
@@ -38,15 +38,17 @@ public class CarsIntegrationTests {
 
     @Test
     public void removeCarFromRequest(){
-        var car = _initializor.randomCar();
+        var car = _initializor.randomCar(_repository);
         var response = _cars.remove(car.getId());
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
     @Autowired
     private Cars _cars;
+
+    private final CarBatchBuilder _builder = new CarBatchBuilder();
+
+    private final CarsDbInitializor _initializor = new CarsDbInitializor();
     @Autowired
-    private CarBatchBuilder _builder;
-    @Autowired
-    private CarsDbInitializor _initializor;
+    private CarRepository _repository;
 }

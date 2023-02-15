@@ -1,6 +1,6 @@
 package dat3.car.Entities.members;
 
-import dat3.car.Entities.EntityModel;
+import dat3.car.Entities.base.EntityModel;
 import jakarta.persistence.*;
 
 import java.util.HashMap;

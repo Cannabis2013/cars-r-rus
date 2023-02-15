@@ -1,10 +1,7 @@
 package dat3.car.Entities.members;
 
-import dat3.car.Entities.EntityModel;
+import dat3.car.Entities.base.EntityModel;
 import jakarta.persistence.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 public class AddressDetails extends EntityModel {

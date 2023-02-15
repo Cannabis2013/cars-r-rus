@@ -1,6 +1,6 @@
 package dat3.car.Entities.cars;
 
-import dat3.car.Entities.EntityModel;
+import dat3.car.Entities.base.EntityModel;
 import dat3.car.Entities.reservations.Reservation;
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -6,6 +6,7 @@ import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.CarRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class Cars {

@@ -1,12 +1,8 @@
 package dat3.car.members;
 
 import dat3.car.Entities.members.MemberRestricted;
-import dat3.car.members.builders.MemberTestBuilder;
 import dat3.car.members.builders.TESTMemberBatchFactory;
 import dat3.car.repository.MemberRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 

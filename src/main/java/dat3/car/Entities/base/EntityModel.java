@@ -1,4 +1,4 @@
-package dat3.car.Entities;
+package dat3.car.Entities.base;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

@@ -8,30 +8,28 @@ import java.util.*;
 
 @Service
 public class CarsDbInitializor {
-    public CarsDbInitializor(CarRepository repository, TESTCarBatchFactory batchFactory) {
-        _repository = repository;
-        _batchFactory = batchFactory;
+    public CarsDbInitializor() {
+        _batchFactory = new TESTCarBatchFactory();
     }
 
-    public void init()
+    public void init(CarRepository repository)
     {
         var batch = _batchFactory.batch();
-        _repository.saveAll(batch);
+        repository.saveAll(batch);
     }
 
-    public void clear()
+    public void clear(CarRepository repository)
     {
-        _repository.deleteAll();
+        repository.deleteAll();
     }
 
-    public CarRestricted randomCar()
+    public CarRestricted randomCar(CarRepository repository)
     {
-        var cars = _repository.findAll();
+        var cars = repository.findAll();
         var random = new Random();
         var i = random.nextInt(cars.size());
         return cars.get(i);
     }
 
-    private final CarRepository _repository;
     private final TESTCarBatchFactory _batchFactory;
 }

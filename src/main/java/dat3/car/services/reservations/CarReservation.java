@@ -25,7 +25,7 @@ public class CarReservation {
 
     public ResponseEntity<String> reserve(ReservationRequest request) {
         if(!_members.existsById(request.memberId()))
-            throw new HttpServerErrorException(HttpStatus.NOT_FOUND,"Member with given id not found");
+            return _result.notFound("Member with given id not found");
         var car = _cars.findById(request.carId()).orElse(null);
         if(car == null)
             return _result.notFound();
@@ -42,7 +42,7 @@ public class CarReservation {
         } catch (Exception e){
             return _result.notUpdated("Reservation failed!");
         }
-        return _result.ok();
+        return _result.created(reservation);
     }
 
     private boolean alreadyReserved(List<Reservation> reservations, LocalDateTime start, LocalDateTime end)
