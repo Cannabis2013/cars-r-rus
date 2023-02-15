@@ -23,6 +23,5 @@ public class Reservation extends EntityModel {
     @ManyToOne
     private CarUnrestricted car;
 
-    @ManyToOne
-    private MemberUnrestricted memberId;
+    private String memberId;
 }
