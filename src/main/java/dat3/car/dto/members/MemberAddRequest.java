@@ -1,15 +1,13 @@
 package dat3.car.dto.members;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-
+import lombok.Getter;
 import java.util.HashMap;
 import java.util.Map;
 
-@AllArgsConstructor
-@Builder
-public class MemberResponse {
+@Getter
+public class MemberAddRequest {
     private String username;
+    private String password;
     private String firstName;
     private String lastName;
     private Map<String,String> phones = new HashMap<>();

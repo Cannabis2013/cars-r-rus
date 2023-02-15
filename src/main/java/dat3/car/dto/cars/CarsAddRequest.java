@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CarResponse {
-    private String id;
+public class CarsAddRequest {
     private String brand;
     private String model;
     private double pricePrDay;
+    private int bestDiscount;
 }

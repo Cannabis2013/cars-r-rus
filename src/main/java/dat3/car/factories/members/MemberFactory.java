@@ -1,32 +1,60 @@
 package dat3.car.factories.members;
 
-import dat3.car.Entities.members.Member;
-import dat3.car.dto.members.MemberRequest;
+import dat3.car.dto.members.MemberAddRequest;
 import dat3.car.dto.members.MemberResponse;
+import dat3.car.entities.members.AddressDetails;
+import dat3.car.entities.members.ContactDetails;
+import dat3.car.entities.members.Member;
+import dat3.car.entities.members.PersonalDetails;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberFactory {
-    public MemberFactory(MemberConverter converter, MemberUpdater updater) {
-        _converter = converter;
-        _updater = updater;
+    public Member fromAddRequest(MemberAddRequest addRequest){
+        var member = new Member();
+        updateCredentials(addRequest,member);
+        updatePersonalDetails(addRequest,member.getPersonalDetails());
+        updateAddressDetails(addRequest,member.getAddressDetails());
+        updateContactDetails(addRequest,member.getContactDetails());
+        return member;
     }
 
-    public Member fromRequest(MemberRequest request)
+    public MemberResponse toFetchResponse(Member member)
     {
-        return _converter.fromRequest(request);
+        return MemberResponse.builder()
+                .username(member.getUsername())
+                .email(member.getContactDetails().getEmail())
+                .phones(member.getContactDetails().getPhones())
+                .firstName(member.getPersonalDetails().getFirstName())
+                .lastName(member.getPersonalDetails().getLastName())
+                .street(member.getAddressDetails().getStreet())
+                .zip(member.getAddressDetails().getZip())
+                .city(member.getAddressDetails().getCity())
+                .build();
     }
 
-    public MemberResponse toResponse(Member member)
+    private void updateCredentials(MemberAddRequest addRequest, Member member){
+        member.setUsername(addRequest.getUsername());
+        member.setPassword(addRequest.getPassword());
+    }
+
+    private void updateContactDetails(MemberAddRequest addRequest, ContactDetails details)
     {
-        return _converter.toResponse(member);
+        details.setPhones(addRequest.getPhones());
+        details.setEmail(addRequest.getEmail());
+
     }
 
-    public Member fromUpdateRequest(MemberRequest request, Member member)
+    private void updatePersonalDetails(MemberAddRequest addRequest, PersonalDetails details)
     {
-        return _updater.updateDetails(request,member);
+        details.setFirstName(addRequest.getFirstName());
+        details.setLastName(addRequest.getLastName());
     }
 
-    private final MemberConverter _converter;
-    private final MemberUpdater _updater;
+    private void updateAddressDetails(MemberAddRequest addRequest, AddressDetails details)
+    {
+        details.setStreet(addRequest.getStreet());
+        details.setZip(addRequest.getZip());
+        details.setCity(addRequest.getCity());
+    }
 }

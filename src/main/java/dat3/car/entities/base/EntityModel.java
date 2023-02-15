@@ -1,11 +1,6 @@
-package dat3.car.Entities;
+package dat3.car.entities.base;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.lang.annotation.Inherited;
-import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class EntityModel {
@@ -13,12 +8,6 @@ public class EntityModel {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
     protected String id;
-
-    @CreationTimestamp
-    protected LocalDateTime created;
-
-    @UpdateTimestamp
-    protected LocalDateTime lastEdited;
 
     public String getId() {
         return id;

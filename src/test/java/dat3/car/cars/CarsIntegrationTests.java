@@ -4,12 +4,10 @@ package dat3.car.cars;
     Tests that passes all layers
  */
 
-import dat3.car.Entities.cars.Car;
-import dat3.car.factories.cars.CarFactory;
+import dat3.car.dto.cars.CarsAddRequest;
 import dat3.car.repository.CarRepository;
 import dat3.car.services.cars.Cars;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,54 +15,43 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 public class CarsIntegrationTests {
+    public CarsIntegrationTests() {
+        _initializor = new CarsDbInitializor();
+    }
+
     @BeforeEach
     public void init()
     {
-        _initializor.init();
+        _initializor.init(_repository);
     }
 
     @AfterEach
     public void cleanUp()
     {
-        _initializor.clear();
+        _initializor.clear(_repository);
     }
     @Test
-    public void addCarFromRequest()
+    public void addCarToDatabase()
     {
-        var req = _builder.teslaModelX();
-        var response = _cars.add(req);
+        var car = new CarsAddRequest("Tesla ","Modex X",25,0);
+        var response = _cars.add(car);
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
     }
 
     @Test
     public void removeCarFromRequest(){
-        var car = _initializor.randomCar();
+        var car = _initializor.randomCar(_repository);
         var response = _cars.remove(car.getId());
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
-    private Car addTestCarToRepository(String brand, String model)
-    {
-        var car = new Car(brand,model,2490);
-        Car savedCar = null;
-        try {
-            savedCar = _repository.save(car);
-        } catch (Exception e){
-            fail();
-        }
-        return savedCar;
-    }
-
-    @Autowired
-    private CarRepository _repository;
     @Autowired
     private Cars _cars;
+
+    private final CarsDbInitializor _initializor;
     @Autowired
-    private CarBatchBuilder _builder;
-    @Autowired
-    private CarsDbInitializor _initializor;
+    private CarRepository _repository;
 }

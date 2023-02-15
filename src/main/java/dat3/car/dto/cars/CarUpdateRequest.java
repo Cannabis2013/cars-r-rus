@@ -5,9 +5,10 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CarResponse {
+public class CarUpdateRequest {
     private String id;
     private String brand;
     private String model;
     private double pricePrDay;
+    private int bestDiscount;
 }

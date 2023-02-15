@@ -1,10 +1,8 @@
-package dat3.car.Entities.members;
+package dat3.car.entities.members;
 
-import dat3.car.Entities.EntityModel;
+import dat3.car.entities.base.EntityModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 public class PersonalDetails extends EntityModel {

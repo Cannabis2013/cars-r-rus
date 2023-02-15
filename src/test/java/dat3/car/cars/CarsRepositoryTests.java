@@ -1,6 +1,7 @@
 package dat3.car.cars;
 
-import dat3.car.Entities.cars.Car;
+import dat3.car.cars.CarsDbInitializor;
+import dat3.car.entities.cars.Car;
 import dat3.car.repository.CarRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -8,30 +9,28 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@DataJpaTest
 public class CarsRepositoryTests {
-    public CarsRepositoryTests(){};
-
     @BeforeEach
     public void init(){
-        _initializor.init();
+        _initializor.init(_repository);
     }
 
     @AfterEach
     public void cleanUp()
     {
-        _initializor.clear();
+        _initializor.clear(_repository);
     }
 
     @Test
     public void addCarToRepository()
     {
         var car = Assertions.assertDoesNotThrow(this::addNissanSkyline);
-        var subject = repository.findByBrandLikeAndModelLike(car.getBrand(), car.getModel());
+        var subject = _repository.findByBrandLikeAndModelLike(car.getBrand(), car.getModel());
         assertEquals(car.getId(), subject.getId());
     }
 
@@ -41,11 +40,11 @@ public class CarsRepositoryTests {
         Car car = null;
         try {
             car = addNissanSkyline();
-            repository.delete(car);
+            _repository.delete(car);
         } catch (Exception e){
             fail();
         }
-        var optional = repository.findById(car.getId());
+        var optional = _repository.findById(car.getId());
         assertFalse(optional.isPresent());
     }
 
@@ -54,9 +53,11 @@ public class CarsRepositoryTests {
     {
         var newBrand = "Tesla";
         var newModel = "Model Y";
-        var car = repository.findByBrandLikeAndModelLike("Lada","500 classic");
-        assertDoesNotThrow(() -> repository.updateCarDetails(newBrand,newModel,car.getId()));
-        var subject = repository.findById(car.getId()).orElseThrow(AssertionFailedError::new);
+        var car = _repository.findByBrandLikeAndModelLike("Lada","500 classic");
+        car.setBrand(newBrand);
+        car.setModel(newModel);
+        assertDoesNotThrow(() -> _repository.save(car));
+        var subject = _repository.findById(car.getId()).orElseThrow(AssertionFailedError::new);
         assertEquals(newBrand,subject.getBrand());
         assertEquals(newModel,subject.getModel());
     }
@@ -65,12 +66,11 @@ public class CarsRepositoryTests {
         var brand = "Nissan";
         var model = "Skyline GTR med ekstra kardanaksel";
         var car = new Car(brand,model,150);
-        return repository.save(car);
+        return _repository.save(car);
     }
 
     @Autowired
-    private CarRepository repository;
+    private CarRepository _repository;
 
-    @Autowired
-    private CarsDbInitializor _initializor;
+    private final CarsDbInitializor _initializor = new CarsDbInitializor();
 }

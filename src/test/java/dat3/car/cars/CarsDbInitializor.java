@@ -1,37 +1,34 @@
 package dat3.car.cars;
 
-import dat3.car.Entities.cars.Car;
+import dat3.car.entities.cars.Car;
 import dat3.car.repository.CarRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class CarsDbInitializor {
-    public CarsDbInitializor(CarRepository repository) {
-        _repository = repository;
+    public void init(JpaRepository<Car,String> repository)
+    {
+        var batch = batch();
+        repository.saveAll(batch);
     }
 
-    public void init()
+    public void clear(JpaRepository<Car,String> repository)
     {
-        var batch = cars();
-        _repository.saveAll(batch);
+        repository.deleteAll();
     }
 
-    public void clear()
+    public Car randomCar(CarRepository repository)
     {
-        _repository.deleteAll();
-    }
-
-    public Car randomCar()
-    {
-        var cars = _repository.findAll();
+        var cars = repository.findAll();
         var random = new Random();
         var i = random.nextInt(cars.size());
         return cars.get(i);
     }
 
-    private List<Car> cars()
+    private List<Car> batch()
     {
         return new ArrayList<>() {
             {
@@ -50,6 +47,4 @@ public class CarsDbInitializor {
         var price = rand.nextDouble(9000) + 1000;
         return new Car(brand,model,price);
     }
-
-    private final CarRepository _repository;
 }

@@ -1,12 +1,14 @@
 package dat3.car.config;
-/*
-import dat3.car.factories.cars.CarFactory;
+
+import dat3.car.config.cars.CarBatchFactory;
+import dat3.car.config.members.MemberBatchFactory;
 import dat3.car.repository.CarRepository;
 import dat3.car.repository.MemberRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class DeveloperData implements ApplicationRunner {
     public DeveloperData(MemberBatchFactory memberFactory, CarRepository carRepository, MemberRepository memberRepository, CarBatchFactory carFactory) {
         this.memberFactory = memberFactory;
@@ -16,14 +18,14 @@ public class DeveloperData implements ApplicationRunner {
     }
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         initDatabase();
     }
 
     private void initDatabase()
     {
-        var cars = carFactory.cars();
-        var members = memberFactory.build();
+        var cars = carFactory.batch();
+        var members = memberFactory.batch();
         try {
             carRepository.saveAll(cars);
             memberRepository.saveAll(members);
@@ -38,4 +40,4 @@ public class DeveloperData implements ApplicationRunner {
     private final CarRepository carRepository;
     private final CarBatchFactory carFactory;
 }
- */
+

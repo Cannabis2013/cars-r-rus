@@ -1,13 +1,11 @@
 package dat3.car.repository;
 
-import dat3.car.Entities.cars.Car;
+import dat3.car.entities.cars.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository
 public interface CarRepository extends JpaRepository<Car,String> {
     @Transactional
     @Modifying

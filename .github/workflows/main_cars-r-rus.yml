@@ -10,14 +10,13 @@ on:
   workflow_dispatch:
 
 env:
-  DbUrl : ${{vars.DbUrl}}
-  DbUser : ${{vars.DbAzUser}}
-  DbPass : ''
+  DbUrl: ${{vars.DbUrl}}
+  DbUser: ${{vars.DbAzUser}}1
+  DbPass: ''
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -54,5 +53,5 @@ jobs:
         with:
           app-name: 'Cars-R-Rus'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EF58B93C92C2488B881ECD5DB5C3684D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_84D9E4E29E9445B4AE7A3B491F8035C7 }}
           package: '*.jar'
