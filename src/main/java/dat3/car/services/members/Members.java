@@ -20,7 +20,7 @@ public class Members {
     public ResponseEntity<String> all()
     {
         var members = _repository.findAll();
-        var response = members.stream().map(_factory::toFetchResponse).toList();
+        var response = members.stream().filter(m -> !m.getRole().equals("ADMIN")).map(_factory::toFetchResponse).toList();
         return _result.ok(response);
     }
 

@@ -31,7 +31,7 @@ public class Car extends EntityModel {
 
     @OneToMany(
             mappedBy = "car",
-            cascade = CascadeType.PERSIST,
+            cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<Reservation> reservations = new ArrayList<>();

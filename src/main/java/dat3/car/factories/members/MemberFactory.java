@@ -22,6 +22,7 @@ public class MemberFactory {
     public MemberResponse toFetchResponse(Member member)
     {
         return MemberResponse.builder()
+                .id(member.getId())
                 .username(member.getUsername())
                 .email(member.getContactDetails().getEmail())
                 .phones(member.getContactDetails().getPhones())

@@ -30,7 +30,9 @@ public class CarsRepositoryTests {
     public void addCarToRepository()
     {
         var car = Assertions.assertDoesNotThrow(this::addNissanSkyline);
-        var subject = _repository.findByBrandLikeAndModelLike(car.getBrand(), car.getModel());
+        var subject = _repository.findByBrandLikeAndModelLike(car.getBrand(), car.getModel()).orElse(null);
+        if(subject == null)
+            fail();
         assertEquals(car.getId(), subject.getId());
     }
 
@@ -53,7 +55,9 @@ public class CarsRepositoryTests {
     {
         var newBrand = "Tesla";
         var newModel = "Model Y";
-        var car = _repository.findByBrandLikeAndModelLike("Lada","500 classic");
+        var car = _repository.findByBrandLikeAndModelLike("Lada","500 classic").orElse(null);
+        if(car == null)
+            fail();
         car.setBrand(newBrand);
         car.setModel(newModel);
         assertDoesNotThrow(() -> _repository.save(car));

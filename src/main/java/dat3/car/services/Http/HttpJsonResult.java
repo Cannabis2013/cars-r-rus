@@ -25,8 +25,8 @@ public class HttpJsonResult implements IHttpResult<String> {
     }
 
     @Override
-    public <TEntity>  ResponseEntity<String> ok(List<TEntity> entities) {
-        var json = new JSONArray(entities).toString();
+    public <TEntity>  ResponseEntity<String> ok(List<TEntity> objects) {
+        var json = new JSONArray(objects).toString();
         return new ResponseEntity<>(json, HttpStatus.OK);
     }
 

@@ -1,55 +1,50 @@
 package dat3.car.api;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import dat3.car.dto.cars.CarUpdateRequest;
 import dat3.car.dto.cars.CarsAddRequest;
 
 import dat3.car.dto.reservations.ReservationRequest;
 import dat3.car.services.cars.Cars;
 import dat3.car.services.reservations.CarReservation;
+import org.hibernate.annotations.Any;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/cars")
 public class CarsApi {
     public CarsApi(Cars carContext, CarReservation reservation) {
         this._cars = carContext;
-        this._reservation = reservation;
     }
 
-    @GetMapping("/cars")
+    @GetMapping("/all")
     public ResponseEntity<String> cars(){
         return _cars.all();
     }
 
-    @PostMapping("/cars/addCar")
+    @GetMapping("/one")
+    public ResponseEntity<String> car(@RequestParam String id){
+        return _cars.get(id);
+    }
+
+    @PostMapping("/add")
     public ResponseEntity<String> addCar(@RequestBody CarsAddRequest request)
     {
         return _cars.add(request);
     }
 
-    @GetMapping("/cars/car")
-    public ResponseEntity<String> car(@RequestParam String id){
-        return _cars.get(id);
-    }
-
-    @PostMapping("/cars/removeCar")
+    @PostMapping("remove")
     public ResponseEntity<String> removeCar(@RequestParam String id)
     {
         return _cars.remove(id);
     }
 
-    @PatchMapping("/cars/updateCar")
+    @PatchMapping("update")
     public ResponseEntity<String> updateCar(@RequestBody CarUpdateRequest request)
     {
         return _cars.update(request);
     }
 
-    @PostMapping("/cars/reserve")
-    public ResponseEntity<String> reserve(@RequestBody ReservationRequest request){
-        return _reservation.reserve(request);
-
-    }
-
     private final Cars _cars;
-    private final CarReservation _reservation;
 }

@@ -2,19 +2,18 @@ package dat3.car.dto.reservations;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
-
 
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder
 @Getter
-public final class ReservationRequest {
+public class ReservationResponse {
     private String carId;
+    private String brand;
+    private String model;
     private String memberId;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime start;

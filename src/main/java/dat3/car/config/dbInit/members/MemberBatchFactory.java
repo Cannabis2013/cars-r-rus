@@ -1,4 +1,4 @@
-package dat3.car.config.members;
+package dat3.car.config.dbInit.members;
 
 import dat3.car.entities.members.Member;
 import org.springframework.stereotype.Service;

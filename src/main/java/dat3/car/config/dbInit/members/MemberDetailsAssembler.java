@@ -1,4 +1,4 @@
-package dat3.car.config.members;
+package dat3.car.config.dbInit.members;
 
 import dat3.car.entities.members.AddressDetails;
 import dat3.car.entities.members.ContactDetails;

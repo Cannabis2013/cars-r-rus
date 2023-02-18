@@ -15,7 +15,7 @@ public class MembersApi {
         this.members = members;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/user/all")
     public ResponseEntity<String> members(){
         return members.all();
     }

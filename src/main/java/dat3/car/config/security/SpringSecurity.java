@@ -1,4 +1,4 @@
-package dat3.car.config;
+package dat3.car.config.security;
 
 import dat3.car.repository.MemberRepository;
 import dat3.car.services.security.UserDetailsServiceImpl;
@@ -19,7 +19,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurity {
-    @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl(userRepository,passwordEncoder());
     }
@@ -40,13 +39,11 @@ public class SpringSecurity {
 
     @Bean
     SecurityFilterChain web(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                ).formLogin();
-        return http.build();
+        return http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
+                .cors().disable()
+                .csrf().disable()
+                .build();
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
