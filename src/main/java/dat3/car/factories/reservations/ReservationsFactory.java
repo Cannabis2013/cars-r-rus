@@ -24,6 +24,7 @@ public class ReservationsFactory {
     public ReservationResponse toResponse(Reservation reservation)
     {
         return ReservationResponse.builder()
+                .reservationId(reservation.getId())
                 .carId(reservation.getCar().getId())
                 .brand(reservation.getCar().getBrand())
                 .model(reservation.getCar().getModel())

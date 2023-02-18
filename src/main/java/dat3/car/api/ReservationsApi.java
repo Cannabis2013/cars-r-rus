@@ -1,27 +1,35 @@
 package dat3.car.api;
 
 import dat3.car.dto.reservations.ReservationRequest;
-import dat3.car.services.reservations.CarReservation;
+import dat3.car.services.reservations.CarReservate;
+import dat3.car.services.reservations.CarReservations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/reservations")
 public class ReservationsApi {
-    public ReservationsApi(CarReservation reservation) {
-        _reservation = reservation;
+    public ReservationsApi(CarReservate reservation, CarReservations carReservations) {
+        _carReservation = reservation;
+        _carReservations = carReservations;
     }
 
-    @GetMapping()
+    @GetMapping("/all")
     public ResponseEntity<String> all()
     {
-        return _reservation.reservations();
+        return _carReservations.reservations();
+    }
+
+    @GetMapping("/one")
+    public ResponseEntity<String> one(@RequestParam String id){
+        return _carReservations.reservation(id);
     }
 
     @PostMapping("/reserve")
     public ResponseEntity<String> reserve(@RequestBody ReservationRequest request){
-        return _reservation.reserve(request);
+        return _carReservation.reserve(request);
     }
 
-    private final CarReservation _reservation;
+    private final CarReservate _carReservation;
+    private final CarReservations _carReservations;
 }

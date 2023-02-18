@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 public class ReservationResponse {
+    private String reservationId;
     private String carId;
     private String brand;
     private String model;

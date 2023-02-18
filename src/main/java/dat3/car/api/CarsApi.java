@@ -1,20 +1,17 @@
 package dat3.car.api;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import dat3.car.dto.cars.CarUpdateRequest;
 import dat3.car.dto.cars.CarsAddRequest;
 
-import dat3.car.dto.reservations.ReservationRequest;
 import dat3.car.services.cars.Cars;
-import dat3.car.services.reservations.CarReservation;
-import org.hibernate.annotations.Any;
+import dat3.car.services.reservations.CarReservate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cars")
 public class CarsApi {
-    public CarsApi(Cars carContext, CarReservation reservation) {
+    public CarsApi(Cars carContext, CarReservate reservation) {
         this._cars = carContext;
     }
 
