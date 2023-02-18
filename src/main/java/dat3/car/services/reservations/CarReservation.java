@@ -3,7 +3,7 @@ package dat3.car.services.reservations;
 import dat3.car.entities.cars.Car;
 import dat3.car.entities.members.Member;
 import dat3.car.entities.reservations.Reservation;
-import dat3.car.SLA.Http.IHttpResult;
+import dat3.car.sla.Http.IHttpResult;
 import dat3.car.dto.reservations.ReservationRequest;
 import dat3.car.factories.reservations.ReservationsFactory;
 import dat3.car.repository.CarRepository;

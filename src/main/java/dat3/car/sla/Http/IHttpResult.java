@@ -1,4 +1,4 @@
-package dat3.car.SLA.Http;
+package dat3.car.sla.Http;
 
 import org.springframework.http.ResponseEntity;
 

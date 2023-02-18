@@ -1,13 +1,11 @@
 package dat3.car.services.Http;
 
-import dat3.car.SLA.Http.IHttpResult;
+import dat3.car.sla.Http.IHttpResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
 

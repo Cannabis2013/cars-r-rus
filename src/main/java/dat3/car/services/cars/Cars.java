@@ -1,16 +1,16 @@
 package dat3.car.services.cars;
 
-import dat3.car.SLA.Http.IHttpResult;
+import dat3.car.sla.Http.IHttpResult;
+import dat3.car.sla.cars.ICarFactory;
 import dat3.car.dto.cars.CarUpdateRequest;
 import dat3.car.dto.cars.CarsAddRequest;
-import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.CarRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Cars {
-    public Cars(IHttpResult<String> response, CarRepository carRepository, CarFactory factory) {
+    public Cars(IHttpResult<String> response, CarRepository carRepository, ICarFactory factory) {
         _factory = factory;
         _response = response;
         _carRepository = carRepository;
@@ -66,5 +66,5 @@ public class Cars {
 
     private final IHttpResult<String> _response;
     private final CarRepository _carRepository;
-    private final CarFactory _factory;
+    private final ICarFactory _factory;
 }

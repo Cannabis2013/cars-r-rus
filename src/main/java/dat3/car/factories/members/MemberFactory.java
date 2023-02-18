@@ -6,10 +6,12 @@ import dat3.car.entities.members.AddressDetails;
 import dat3.car.entities.members.ContactDetails;
 import dat3.car.entities.members.Member;
 import dat3.car.entities.members.PersonalDetails;
+import dat3.car.sla.members.IMemberFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MemberFactory {
+public class MemberFactory implements IMemberFactory {
+    @Override
     public Member fromAddRequest(MemberAddRequest addRequest){
         var member = new Member();
         updateCredentials(addRequest,member);
@@ -19,6 +21,7 @@ public class MemberFactory {
         return member;
     }
 
+    @Override
     public MemberResponse toFetchResponse(Member member)
     {
         return MemberResponse.builder()
