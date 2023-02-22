@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Cars {
-    public Cars(IHttpResult<String> response, CarRepository carRepository, ICarFactory factory) {
+public class CarManager {
+    public CarManager(IHttpResult<String> response, CarRepository carRepository, ICarFactory factory) {
         _factory = factory;
         _response = response;
         _carRepository = carRepository;

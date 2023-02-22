@@ -6,7 +6,7 @@ package dat3.car.cars;
 
 import dat3.car.dto.cars.CarsAddRequest;
 import dat3.car.repository.CarRepository;
-import dat3.car.services.cars.Cars;
+import dat3.car.services.cars.CarManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,8 +17,8 @@ import org.springframework.http.HttpStatus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class CarsIntegrationTests {
-    public CarsIntegrationTests() {
+public class CarManagerIntegrationTests {
+    public CarManagerIntegrationTests() {
         _initializor = new CarsDbInitializor();
     }
 
@@ -37,19 +37,19 @@ public class CarsIntegrationTests {
     public void addCarToDatabase()
     {
         var car = new CarsAddRequest("Tesla ","Modex X",25,0);
-        var response = _cars.add(car);
+        var response = _carManager.add(car);
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
     }
 
     @Test
     public void removeCarFromRequest(){
         var car = _initializor.randomCar(_repository);
-        var response = _cars.remove(car.getId());
+        var response = _carManager.remove(car.getId());
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
     @Autowired
-    private Cars _cars;
+    private CarManager _carManager;
 
     private final CarsDbInitializor _initializor;
     @Autowired

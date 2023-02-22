@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Members {
-    public Members(IMemberFactory factory, MemberUpdate update, MemberRepository repository, IHttpResult<String> response) {
+public class MemberManager {
+    public MemberManager(IMemberFactory factory, MemberUpdate update, MemberRepository repository, IHttpResult<String> response) {
         _factory = factory;
         _update = update;
         _repository = repository;
