@@ -2,7 +2,7 @@ package dat3.car.services.reservations;
 
 import dat3.car.factories.reservations.ReservationsFactory;
 import dat3.car.repository.ReservationRepository;
-import dat3.car.sla.Http.IHttpResult;
+import dat3.car.contracts.Http.IHttpResult;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

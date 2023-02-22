@@ -1,6 +1,6 @@
 package dat3.car.services.Http;
 
-import dat3.car.sla.Http.IHttpResult;
+import dat3.car.contracts.Http.IHttpResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,6 @@
-package dat3.car.sla.Http;
+package dat3.car.contracts.Http;
 
 import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 
 public interface IHttpResult<TResponse>{

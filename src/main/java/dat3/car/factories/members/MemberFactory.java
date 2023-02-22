@@ -6,7 +6,7 @@ import dat3.car.entities.members.AddressDetails;
 import dat3.car.entities.members.ContactDetails;
 import dat3.car.entities.members.Member;
 import dat3.car.entities.members.PersonalDetails;
-import dat3.car.sla.members.IMemberFactory;
+import dat3.car.contracts.members.IMemberFactory;
 import org.springframework.stereotype.Service;
 
 @Service

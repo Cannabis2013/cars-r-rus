@@ -1,6 +1,6 @@
 package dat3.car.factories.cars;
 
-import dat3.car.sla.cars.ICarFactory;
+import dat3.car.contracts.cars.ICarFactory;
 import dat3.car.dto.cars.CarResponse;
 import dat3.car.dto.cars.CarsAddRequest;
 import dat3.car.entities.cars.Car;

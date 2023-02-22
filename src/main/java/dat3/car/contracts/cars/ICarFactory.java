@@ -1,4 +1,4 @@
-package dat3.car.sla.cars;
+package dat3.car.contracts.cars;
 
 import dat3.car.dto.cars.CarResponse;
 import dat3.car.dto.cars.CarsAddRequest;

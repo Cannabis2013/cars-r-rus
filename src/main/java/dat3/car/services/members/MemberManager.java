@@ -1,10 +1,10 @@
 package dat3.car.services.members;
 
-import dat3.car.sla.Http.IHttpResult;
+import dat3.car.contracts.Http.IHttpResult;
 import dat3.car.dto.members.MemberAddRequest;
 import dat3.car.dto.members.MemberUpdateRequest;
 import dat3.car.repository.MemberRepository;
-import dat3.car.sla.members.IMemberFactory;
+import dat3.car.contracts.members.IMemberFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

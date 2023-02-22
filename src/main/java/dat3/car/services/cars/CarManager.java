@@ -1,7 +1,7 @@
 package dat3.car.services.cars;
 
-import dat3.car.sla.Http.IHttpResult;
-import dat3.car.sla.cars.ICarFactory;
+import dat3.car.contracts.Http.IHttpResult;
+import dat3.car.contracts.cars.ICarFactory;
 import dat3.car.dto.cars.CarUpdateRequest;
 import dat3.car.dto.cars.CarsAddRequest;
 import dat3.car.repository.CarRepository;
