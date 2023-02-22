@@ -1,8 +1,4 @@
 spring:
-  datasource:
-    url: ${DbTestUrl}
-    username: ${DbTestUser}
-    password: ${DbTestPass}
   jpa:
     show-sql: false
     hibernate:

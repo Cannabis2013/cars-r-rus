@@ -4,6 +4,7 @@ import dat3.car.entities.cars.Car;
 import dat3.car.repository.CarRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -23,9 +24,8 @@ public class CarsDbInitializor {
     public Car randomCar(CarRepository repository)
     {
         var cars = repository.findAll();
-        var random = new Random();
-        var i = random.nextInt(cars.size());
-        return cars.get(i);
+        Collections.shuffle(cars);
+        return cars.get(0);
     }
 
     private List<Car> batch()

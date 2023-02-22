@@ -4,6 +4,7 @@ import dat3.car.contracts.Http.IHttpResult;
 import dat3.car.contracts.cars.ICarFactory;
 import dat3.car.dto.cars.CarUpdateRequest;
 import dat3.car.dto.cars.CarsAddRequest;
+import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.CarRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -44,10 +45,11 @@ public class CarManager {
     }
 
     public ResponseEntity<String> remove(String id){
-        if(!_carRepository.existsById(id))
+        var car = _carRepository.findById(id).orElse(null);
+        if(car == null)
             return _response.notFound();
         try {
-            _carRepository.deleteById(id);
+            _carRepository.delete(car);
         } catch (Exception e){
             return _response.badRequest("Failed to remove resource");
         }

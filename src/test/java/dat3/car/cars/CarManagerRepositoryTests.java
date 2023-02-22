@@ -39,9 +39,8 @@ public class CarManagerRepositoryTests {
     @Test
     public void removeCarFromDatabase()
     {
-        Car car = null;
+        Car car = _initializor.randomCar(_repository);
         try {
-            car = addNissanSkyline();
             _repository.delete(car);
         } catch (Exception e){
             fail();
@@ -75,6 +74,5 @@ public class CarManagerRepositoryTests {
 
     @Autowired
     private CarRepository _repository;
-
     private final CarsDbInitializor _initializor = new CarsDbInitializor();
 }
