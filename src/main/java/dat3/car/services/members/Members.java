@@ -73,4 +73,3 @@ public class Members {
     private final MemberRepository _repository;
     private final IHttpResult<String> _response;
 }
-3
