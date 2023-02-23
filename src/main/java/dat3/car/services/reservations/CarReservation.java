@@ -7,7 +7,7 @@ import dat3.car.entities.reservations.Reservation;
 import dat3.car.factories.reservations.ReservationsFactory;
 import dat3.car.repository.CarRepository;
 import dat3.car.repository.MemberRepository;
-import dat3.car.repository.ReservationRepository;
+import dat3.car.repository.IReservationRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 public class CarReservation {
-    public CarReservation(ReservationRepository reservations, ReservationsFactory factory, CarRepository cars, MemberRepository members) {
+    public CarReservation(IReservationRepository reservations, ReservationsFactory factory, CarRepository cars, MemberRepository members) {
         _reservations = reservations;
         _factory = factory;
         _cars = cars;
@@ -49,7 +49,7 @@ public class CarReservation {
     }
 
 
-    private final ReservationRepository _reservations;
+    private final IReservationRepository _reservations;
     private final ReservationsFactory _factory;
     private final CarRepository _cars;
     private final MemberRepository _members;

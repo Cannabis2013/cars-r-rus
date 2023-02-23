@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation,String> {
+public interface IReservationRepository extends JpaRepository<Reservation,String> {
 }

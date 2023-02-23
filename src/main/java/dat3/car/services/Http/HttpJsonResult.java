@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class HttpJsonResult implements IHttpResult<String> {
+public class HttpJsonResult extends IHttpResult<String> {
     @Override
     public ResponseEntity<String>  ok() {
         return new ResponseEntity<>("",HttpStatus.OK);
@@ -46,7 +46,7 @@ public class HttpJsonResult implements IHttpResult<String> {
 
     @Override
     public ResponseEntity<String> notFound(String message) {
-        return new ResponseEntity<String>(message,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     @Override

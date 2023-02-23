@@ -1,14 +1,14 @@
 package dat3.car.services.reservations;
 
 import dat3.car.factories.reservations.ReservationsFactory;
-import dat3.car.repository.ReservationRepository;
+import dat3.car.repository.IReservationRepository;
 import dat3.car.contracts.Http.IHttpResult;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CarReservations {
-    public CarReservations(IHttpResult<String> result, ReservationsFactory factory, ReservationRepository reservations) {
+    public CarReservations(IHttpResult<String> result, ReservationsFactory factory, IReservationRepository reservations) {
         _result = result;
         _factory = factory;
         _reservations = reservations;
@@ -31,5 +31,5 @@ public class CarReservations {
 
     private final IHttpResult<String> _result;
     private final ReservationsFactory _factory;
-    private final ReservationRepository _reservations;
+    private final IReservationRepository _reservations;
 }
