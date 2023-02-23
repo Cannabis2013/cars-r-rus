@@ -1,8 +1,7 @@
 package dat3.car.cars;
 
-import dat3.car.cars.CarsDbInitializor;
 import dat3.car.entities.cars.Car;
-import dat3.car.repository.CarRepository;
+import dat3.car.repository.ICarRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -73,6 +72,6 @@ public class CarManagerRepositoryTests {
     }
 
     @Autowired
-    private CarRepository _repository;
+    private ICarRepository _repository;
     private final CarsDbInitializor _initializor = new CarsDbInitializor();
 }

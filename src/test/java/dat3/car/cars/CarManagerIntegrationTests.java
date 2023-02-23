@@ -4,10 +4,9 @@ package dat3.car.cars;
     Tests that passes all layers
  */
 
-import dat3.car.contracts.cars.ICarFactory;
 import dat3.car.dto.cars.CarsAddRequest;
 import dat3.car.factories.cars.CarFactory;
-import dat3.car.repository.CarRepository;
+import dat3.car.repository.ICarRepository;
 import dat3.car.services.Http.HttpJsonResult;
 import dat3.car.services.cars.CarManager;
 import org.junit.jupiter.api.AfterEach;
@@ -15,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,5 +51,5 @@ public class CarManagerIntegrationTests {
 
     private final CarsDbInitializor _initializor = new CarsDbInitializor();
     @Autowired
-    private CarRepository _repository;
+    private ICarRepository _repository;
 }

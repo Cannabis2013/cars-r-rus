@@ -1,17 +1,34 @@
 package dat3.car.services.reservations;
 
 import dat3.car.dto.reservations.ReservationRequest;
+import dat3.car.factories.reservations.ReservationsFactory;
 import dat3.car.repository.IReservationRepository;
 import dat3.car.contracts.Http.IHttpResult;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarReservate {
-    public CarReservate(IHttpResult<String> respone, IReservationRepository reservations, CarReservation carReserve) {
-        _result = respone;
-        _reservations = reservations;
+public class CarReservationManager {
+    public CarReservationManager(CarReservation carReserve, IHttpResult<String> result, ReservationsFactory factory, IReservationRepository reservations) {
         _carReserve = carReserve;
+        _result = result;
+        _factory = factory;
+        _reservations = reservations;
+    }
+
+    public ResponseEntity<String> reservations()
+    {
+        var reservations = _reservations.findAll();
+        var response = reservations.stream().map(_factory::toResponse).toList();
+        return _result.ok(response);
+    }
+
+    public ResponseEntity<String> reservation(String id){
+        var reservation = _reservations.findById(id).orElse(null);
+        if(reservation == null)
+            return _result.notFound("Reservation with given id not found");
+        var response = _factory.toResponse(reservation);
+        return _result.ok(response);
     }
 
     public ResponseEntity<String> reserve(ReservationRequest request) {
@@ -22,7 +39,7 @@ public class CarReservate {
         } catch (CarReserveFailedException e){
             return _result.notUpdated(e.getMessage());
         }
-        return _result.ok();
+        return _result.created();
     }
 
     public ResponseEntity<String> unReserve(String id){
@@ -34,7 +51,8 @@ public class CarReservate {
         return _result.ok();
     }
 
-    private final IHttpResult<String> _result;
-    private final IReservationRepository _reservations;
     private final CarReservation _carReserve;
+    private final IHttpResult<String> _result;
+    private final ReservationsFactory _factory;
+    private final IReservationRepository _reservations;
 }

@@ -1,7 +1,7 @@
 package dat3.car.members;
 
 import dat3.car.members.builders.MemberTestBuilder;
-import dat3.car.repository.MemberRepository;
+import dat3.car.repository.IMemberRepository;
 import org.junit.jupiter.api.*;
 import org.opentest4j.AssertionFailedError;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +56,7 @@ public class MemberRepositoryTests {
     }
 
     @Autowired
-    private MemberRepository _repository;
+    private IMemberRepository _repository;
 
     private final MembersDbInitializor _initializor = new MembersDbInitializor();
 

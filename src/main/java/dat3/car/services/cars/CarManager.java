@@ -4,14 +4,13 @@ import dat3.car.contracts.Http.IHttpResult;
 import dat3.car.contracts.cars.ICarFactory;
 import dat3.car.dto.cars.CarUpdateRequest;
 import dat3.car.dto.cars.CarsAddRequest;
-import dat3.car.factories.cars.CarFactory;
-import dat3.car.repository.CarRepository;
+import dat3.car.repository.ICarRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CarManager {
-    public CarManager(IHttpResult<String> response, CarRepository carRepository, ICarFactory factory) {
+    public CarManager(IHttpResult<String> response, ICarRepository carRepository, ICarFactory factory) {
         _factory = factory;
         _response = response;
         _carRepository = carRepository;
@@ -67,6 +66,6 @@ public class CarManager {
     }
 
     private final IHttpResult<String> _response;
-    private final CarRepository _carRepository;
+    private final ICarRepository _carRepository;
     private final ICarFactory _factory;
 }

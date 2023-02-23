@@ -1,14 +1,12 @@
 package dat3.car.cars;
 
 import dat3.car.entities.cars.Car;
-import dat3.car.repository.CarRepository;
+import dat3.car.repository.ICarRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-@Service
 public class CarsDbInitializor {
     public void init(JpaRepository<Car,String> repository)
     {
@@ -21,7 +19,7 @@ public class CarsDbInitializor {
         repository.deleteAll();
     }
 
-    public Car randomCar(CarRepository repository)
+    public Car randomCar(ICarRepository repository)
     {
         var cars = repository.findAll();
         Collections.shuffle(cars);

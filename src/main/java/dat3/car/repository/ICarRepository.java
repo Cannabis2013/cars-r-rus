@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-public interface CarRepository extends JpaRepository<Car,String> {
+public interface ICarRepository extends JpaRepository<Car,String> {
     @Transactional
     @Modifying
     @Query("update Car c set c.brand = ?1, c.model = ?2 where c.id like ?3")

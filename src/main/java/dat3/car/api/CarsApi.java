@@ -4,14 +4,13 @@ import dat3.car.dto.cars.CarUpdateRequest;
 import dat3.car.dto.cars.CarsAddRequest;
 
 import dat3.car.services.cars.CarManager;
-import dat3.car.services.reservations.CarReservate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cars")
 public class CarsApi {
-    public CarsApi(CarManager carContext, CarReservate reservation) {
+    public CarsApi(CarManager carContext) {
         this._carManager = carContext;
     }
 

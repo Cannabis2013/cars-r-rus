@@ -29,6 +29,11 @@ public class HttpJsonResult extends IHttpResult<String> {
     }
 
     @Override
+    public <TEntity> ResponseEntity<String> created() {
+        return new ResponseEntity<>("Resource created",HttpStatus.CREATED);
+    }
+
+    @Override
     public <TEntity> ResponseEntity<String> created(TEntity entity) {
         var json = new JSONObject(entity).toString();
         return new ResponseEntity<>(json,HttpStatus.CREATED);

@@ -4,13 +4,13 @@ import dat3.car.contracts.Http.IHttpResult;
 import dat3.car.contracts.members.IMemberFactory;
 import dat3.car.dto.members.MemberAddRequest;
 import dat3.car.dto.members.MemberUpdateRequest;
-import dat3.car.repository.MemberRepository;
+import dat3.car.repository.IMemberRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Members {
-    public Members(IMemberFactory factory, MemberUpdate update, MemberRepository repository, IHttpResult<String> response) {
+    public Members(IMemberFactory factory, MemberUpdate update, IMemberRepository repository, IHttpResult<String> response) {
         _factory = factory;
         _update = update;
         _repository = repository;
@@ -70,6 +70,6 @@ public class Members {
 
     private final IMemberFactory _factory;
     private final MemberUpdate _update;
-    private final MemberRepository _repository;
+    private final IMemberRepository _repository;
     private final IHttpResult<String> _response;
 }
