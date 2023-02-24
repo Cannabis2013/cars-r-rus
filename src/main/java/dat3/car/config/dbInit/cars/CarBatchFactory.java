@@ -1,10 +1,8 @@
 package dat3.car.config.dbInit.cars;
 
 import dat3.car.entities.cars.Car;
-import dat3.car.entities.reservations.Reservation;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

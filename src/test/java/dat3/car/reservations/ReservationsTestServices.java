@@ -1,32 +1,44 @@
 package dat3.car.reservations;
 
 import dat3.car.cars.CarsDbInitializor;
+import dat3.car.entities.reservations.Reservation;
 import dat3.car.factories.reservations.ReservationsFactory;
 import dat3.car.members.MembersDbInitializor;
 import dat3.car.repository.ICarRepository;
 import dat3.car.repository.IMemberRepository;
 import dat3.car.repository.IReservationRepository;
 import dat3.car.services.Http.HttpJsonResult;
-import dat3.car.services.reservations.CarReservation;
 import dat3.car.services.reservations.CarReservationManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@DataJpaTest
+import java.util.Collections;
+import java.util.List;
+
 public class ReservationsTestServices {
     protected void initDatabases(){
-        _carsInitializor.init(_carRepository);
-        _membersInitializor.init(_memberRepository);
+        _carsInitializor.init(_cars);
+        _membersInitializor.init(_members);
     }
 
     protected void clearDatabases(){
-        _carsInitializor.clear(_carRepository);
-        _membersInitializor.clear(_memberRepository);
+        _carsInitializor.clear(_cars);
+        _membersInitializor.clear(_members);
     }
 
     protected CarReservationManager manager(){
-        var reservation = new CarReservation(_repository,_factory,_carRepository,_memberRepository);
-        return new CarReservationManager(reservation,new HttpJsonResult(),_factory,_repository);
+        var reservation = new dat3.car.services.reservations.CarReservation(_reservations,_factory, _cars, _members);
+        return new CarReservationManager(reservation,new HttpJsonResult(),_factory, _reservations);
+    }
+
+    protected Reservation randomRerservation(){
+        List<Reservation> reservations;
+        try{
+            reservations = _reservations.findAll();
+        } catch (Exception e){
+            throw e;
+        }
+        Collections.shuffle(reservations);
+        return reservations.stream().findFirst().orElse(null);
     }
 
     protected final CarsDbInitializor _carsInitializor = new CarsDbInitializor();
@@ -35,9 +47,9 @@ public class ReservationsTestServices {
 
 
     @Autowired
-    protected IReservationRepository _repository;
+    protected IReservationRepository _reservations;
     @Autowired
-    protected ICarRepository _carRepository;
+    protected ICarRepository _cars;
     @Autowired
-    protected IMemberRepository _memberRepository;
+    protected IMemberRepository _members;
 }

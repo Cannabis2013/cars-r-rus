@@ -1,14 +1,12 @@
 package dat3.car.entities.reservations;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dat3.car.entities.base.EntityModel;
 import dat3.car.entities.cars.Car;
 import dat3.car.entities.members.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,5 +28,6 @@ public class Reservation extends EntityModel {
     private Car car;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="member_id", nullable=false)
     private Member member;
 }

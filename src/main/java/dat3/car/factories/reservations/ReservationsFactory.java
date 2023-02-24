@@ -7,8 +7,6 @@ import dat3.car.entities.members.Member;
 import dat3.car.entities.reservations.Reservation;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class ReservationsFactory {
     public Reservation fromRequest(ReservationRequest request, Car car, Member member)
