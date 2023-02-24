@@ -10,10 +10,13 @@ import dat3.car.repository.IReservationRepository;
 import dat3.car.services.Http.HttpJsonResult;
 import dat3.car.services.reservations.CarReservationManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+@DataJpaTest
 public class ReservationsTestServices {
     protected void initDatabases(){
         _carsInitializor.init(_cars);
@@ -31,12 +34,7 @@ public class ReservationsTestServices {
     }
 
     protected Reservation randomRerservation(){
-        List<Reservation> reservations;
-        try{
-            reservations = _reservations.findAll();
-        } catch (Exception e){
-            throw e;
-        }
+        List<Reservation> reservations = _reservations.findAll();
         Collections.shuffle(reservations);
         return reservations.stream().findFirst().orElse(null);
     }
