@@ -14,7 +14,7 @@ public class CarBatchFactory {
         return new ArrayList<>() {
             {
                 add(car("Volkswagen", "ID.4"));
-                add(car("Ford", "Escord RS2000"));
+                add(car("Ford", "Escort RS2000"));
                 add(car("Nissan", "Shitbox model 1983"));
                 add(car("Lada","500 classic"));
                 add(car("Fiat","Duna 70"));
@@ -25,7 +25,7 @@ public class CarBatchFactory {
     private Car car(String brand, String model)
     {
         var rand = new Random();
-        var price = rand.nextDouble(9000) + 1000;
+        var price = rand.nextInt(9000) + 1000;
         var car = new Car(brand,model,price);
         return car;
     }
