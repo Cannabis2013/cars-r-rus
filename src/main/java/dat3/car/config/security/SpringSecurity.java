@@ -40,9 +40,9 @@ public class SpringSecurity {
 
     @Bean
     SecurityFilterChain web(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
-                .cors().disable()
+        return http.cors().disable()
                 .csrf().disable()
+                .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
                 .build();
     }
     @Bean

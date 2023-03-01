@@ -4,6 +4,7 @@ package dat3.car.cars;
     Tests that passes all layers
  */
 
+import dat3.car.Utils.ImageBase64Converter;
 import dat3.car.dto.cars.CarsAddRequest;
 import dat3.car.factories.cars.CarFactory;
 import dat3.car.repository.ICarRepository;
@@ -23,7 +24,7 @@ public class CarManagerIntegrationTests {
     @BeforeEach
     public void init()
     {
-        _carManager = new CarManager(new HttpJsonResult(),_repository,new CarFactory());
+        _carManager = new CarManager(new HttpJsonResult(),_repository,new CarFactory(new ImageBase64Converter()));
         _initializor.init(_repository);
     }
 

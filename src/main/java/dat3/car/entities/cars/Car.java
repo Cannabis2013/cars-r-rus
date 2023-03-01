@@ -3,14 +3,18 @@ package dat3.car.entities.cars;
 import dat3.car.entities.base.EntityModel;
 import dat3.car.entities.reservations.Reservation;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -28,6 +32,19 @@ public class Car extends EntityModel {
     private String model;
     @Column(name = "rental_price_day")
     private double pricePrDay;
+
+    private String description;
+    private int year;
+    private String color;
+
+    @Column
+    private String imageFilePath = "";
+
+    @ElementCollection
+    private Map<String,String> features = new HashMap<>();
+
+    @ElementCollection
+    private List<String> recommendations = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "car",
