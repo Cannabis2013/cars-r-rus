@@ -6,7 +6,7 @@ name: Build and deploy JAR app to Azure Web App - cars-r-rus
 on:
   push:
     branches:
-      - main
+      - Production
   workflow_dispatch:
 
 jobs:
