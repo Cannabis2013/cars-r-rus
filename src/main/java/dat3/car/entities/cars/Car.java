@@ -34,7 +34,7 @@ public class Car extends EntityModel {
     private double pricePrDay;
 
     private String description;
-    private int year;
+    private int productionYear;
     private String color;
 
     @Column
@@ -48,8 +48,7 @@ public class Car extends EntityModel {
 
     @OneToMany(
             mappedBy = "car",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     private List<Reservation> reservations = new ArrayList<>();
 

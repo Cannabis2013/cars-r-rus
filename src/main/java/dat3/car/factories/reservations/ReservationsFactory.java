@@ -13,8 +13,8 @@ public class ReservationsFactory {
     {
         return Reservation.builder()
                 .member(member)
-                .start(request.getStart())
-                .end(request.getEnd())
+                .reservationStart(request.getReservationStart())
+                .reservationEnd(request.getReservationEnd())
                 .car(car)
                 .build();
     }
@@ -26,8 +26,8 @@ public class ReservationsFactory {
                 .carId(reservation.getCar().getId())
                 .brand(reservation.getCar().getBrand())
                 .model(reservation.getCar().getModel())
-                .start(reservation.getStart())
-                .end(reservation.getEnd())
+                .reservationStart(reservation.getReservationStart())
+                .reservationEnd(reservation.getReservationEnd())
                 .build();
     }
 }

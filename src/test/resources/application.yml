@@ -1,7 +1,12 @@
+
 spring:
+  datasource:
+    url: ${DbTestUrl}
+    username: ${DbTestUser}
+    password: ${DbTestPass}
   jpa:
     show-sql: false
     hibernate:
       ddl-auto: create-drop
   h2:
-    console.enabled: true
+    console.enabled: false

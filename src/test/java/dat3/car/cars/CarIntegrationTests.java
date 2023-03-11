@@ -20,7 +20,7 @@ import org.springframework.http.HttpStatus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
-public class CarManagerIntegrationTests {
+public class CarIntegrationTests {
     @BeforeEach
     public void init()
     {

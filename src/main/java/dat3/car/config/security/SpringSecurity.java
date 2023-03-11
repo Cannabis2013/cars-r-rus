@@ -1,6 +1,5 @@
 package dat3.car.config.security;
 
-
 import dat3.car.repository.IMemberRepository;
 import dat3.car.services.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +42,8 @@ public class SpringSecurity {
         return http.cors().disable()
                 .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
+                .headers().frameOptions().disable()
+                .and()
                 .build();
     }
     @Bean

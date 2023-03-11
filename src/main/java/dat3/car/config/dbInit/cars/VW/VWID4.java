@@ -22,7 +22,7 @@ public class VWID4{
     private void updateBasicDetails(){
         _car.setBrand("Volkswagen");
         _car.setModel("ID.4");
-        _car.setYear(2021);
+        _car.setProductionYear(2021);
         _car.setColor("black");
     }
 

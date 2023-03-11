@@ -13,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-public class CarManagerRepositoryTests {
+public class CarRepositoryTests {
     @BeforeEach
     public void init(){
         _initializor.init(_repository);

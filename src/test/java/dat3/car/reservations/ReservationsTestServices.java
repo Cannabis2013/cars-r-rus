@@ -18,7 +18,7 @@ import java.util.List;
 
 @DataJpaTest
 public class ReservationsTestServices {
-    protected void initDatabases(){
+    public void initDatabases(){
         _carsInitializor.init(_cars);
         _membersInitializor.init(_members);
     }

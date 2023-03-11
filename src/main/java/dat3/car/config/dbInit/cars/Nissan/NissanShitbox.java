@@ -1,6 +1,5 @@
 package dat3.car.config.dbInit.cars.Nissan;
 
-import dat3.car.contracts.Utils.IImageConverter;
 import dat3.car.entities.cars.Car;
 
 public class NissanShitbox {
@@ -23,7 +22,7 @@ public class NissanShitbox {
         _car.setBrand("Nissan");
         _car.setModel("Shitbox");
         _car.setColor("white");
-        _car.setYear(1983);
+        _car.setProductionYear(1983);
         _car.setPricePrDay(300);
     }
 

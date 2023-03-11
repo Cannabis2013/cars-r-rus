@@ -17,7 +17,7 @@ public final class ReservationRequest {
     private String carId;
     private String memberId;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime start;
+    private LocalDateTime reservationStart;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime end;
+    private LocalDateTime reservationEnd;
 }

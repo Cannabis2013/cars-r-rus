@@ -1,6 +1,5 @@
 package dat3.car.config.dbInit.cars.Fiat;
 
-import dat3.car.contracts.Utils.IImageConverter;
 import dat3.car.entities.cars.Car;
 
 public class Duna70 {
@@ -10,7 +9,7 @@ public class Duna70 {
         _car.setModel("Duna 70");
         _car.setImageFilePath("duna70.png");
         _car.setColor("white");
-        _car.setYear(1985);
+        _car.setProductionYear(1985);
         _car.setDescription("""
                 An italian made car with a good engine and bad exhausting system. 
                 I think the one makes up for the other part, we guess.

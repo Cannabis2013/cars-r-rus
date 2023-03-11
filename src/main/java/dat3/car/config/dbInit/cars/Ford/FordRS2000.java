@@ -1,6 +1,5 @@
 package dat3.car.config.dbInit.cars.Ford;
 
-import dat3.car.contracts.Utils.IImageConverter;
 import dat3.car.entities.cars.Car;
 
 public class FordRS2000 {
@@ -9,7 +8,7 @@ public class FordRS2000 {
         _car.setBrand("Ford");
         _car.setModel("Escort RS2000");
         _car.setColor("white");
-        _car.setYear(1997);
+        _car.setProductionYear(1997);
         _car.setDescription("""
                 A rally car which makes it an ideal choice to those who wants
                 to go offroad in the local forest. With lot of horsepowers and

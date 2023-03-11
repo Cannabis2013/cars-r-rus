@@ -24,7 +24,7 @@ public class CarFactory implements ICarFactory {
                 .id(car.getId())
                 .brand(car.getBrand())
                 .model(car.getModel())
-                .year(car.getYear())
+                .year(car.getProductionYear())
                 .pricePrDay(car.getPricePrDay())
                 .features(car.getFeatures())
                 .description(car.getDescription())

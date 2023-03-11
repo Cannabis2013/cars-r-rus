@@ -29,7 +29,7 @@ public class CarReservation {
     }
 
     private void addToDatabase(Car car, Member member, ReservationRequest request) throws CarReserveFailedException {
-        if(alreadyReserved(car.getReservations(),request.getStart(),request.getEnd()))
+        if(alreadyReserved(car.getReservations(),request.getReservationStart(),request.getReservationEnd()))
             throw new CarReserveFailedException("Car already reserved");
         var reservation = _factory.fromRequest(request,car,member);
         try {
@@ -42,7 +42,7 @@ public class CarReservation {
     private boolean alreadyReserved(List<Reservation> reservations, LocalDateTime start, LocalDateTime end)
     {
         for (var reservation : reservations){
-            if(!reservation.getStart().isAfter(end) && !reservation.getEnd().isBefore(start))
+            if(!reservation.getReservationStart().isAfter(end) && !reservation.getReservationEnd().isBefore(start))
                 return true;
         }
         return false;

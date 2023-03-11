@@ -19,9 +19,9 @@ import java.time.LocalDateTime;
 public class Reservation extends EntityModel {
 
     @JsonFormat(locale = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime start;
+    private LocalDateTime reservationStart;
     @JsonFormat(locale = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime end;
+    private LocalDateTime reservationEnd;
 
     @ManyToOne()
     @JoinColumn(name="car_id", nullable=false)
