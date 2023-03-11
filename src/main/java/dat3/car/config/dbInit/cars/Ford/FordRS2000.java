@@ -18,7 +18,7 @@ public class FordRS2000 {
                 "One tire is missing. Please provide one yourself");
         _car.setPricePrDay(3500);
         _car.getRecommendations().add("Chernobogs pick 2023");
-        _car.setImageFilePath("/home/mh/GitRepos/cars_backend/src/main/java/dat3/car/config/dbInit/cars/Ford/Ford_Escort_RS2000.webp");
+        _car.setImageFilePath("src/main/java/dat3/car/config/dbInit/cars/Ford/Ford_Escort_RS2000.webp");
     }
 
     public Car getCar() {

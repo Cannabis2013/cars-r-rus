@@ -17,7 +17,7 @@ public class Duna70 {
         _car.getFeatures().put("Safety first","All airbags intact");
         _car.setPricePrDay(1250);
         _car.getRecommendations().add("Chernobogs Precationary Select");
-        _car.setImageFilePath("/home/mh/GitRepos/cars_backend/src/main/java/dat3/car/config/dbInit/cars/Fiat/duna70.png");
+        _car.setImageFilePath("src/main/java/dat3/car/config/dbInit/cars/Fiat/Duna70.java");
     }
 
     public Car getCar() {

@@ -7,7 +7,7 @@ public class VWID4{
         _car = new Car();
         updateBasicDetails();
         updateFeatures();
-        _car.setImageFilePath("/home/mh/GitRepos/cars_backend/src/main/java/dat3/car/config/dbInit/cars/VW/vw_id4.jpg");
+        _car.setImageFilePath("src/main/java/dat3/car/config/dbInit/cars/VW/vw_id4.jpg");
         _car.setPricePrDay(4500);
         _car.setDescription("""
                 Volkswagens popular electric vehicle.
