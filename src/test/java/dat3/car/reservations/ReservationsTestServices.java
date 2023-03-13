@@ -6,7 +6,7 @@ import dat3.car.reservations.factories.ReservationsFactory;
 import dat3.car.members.MembersDbInitializor;
 import dat3.car.cars.repositories.ICarRepository;
 import dat3.car.members.repositories.IMemberRepository;
-import dat3.car.repository.IReservationRepository;
+import dat3.car.reservations.repositories.IReservationRepository;
 import dat3.car.reservations.services.CarReservation;
 import dat3.car.shared.services.Http.HttpJsonResult;
 import dat3.car.reservations.services.CarReservationManager;

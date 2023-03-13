@@ -7,7 +7,7 @@ import dat3.car.reservations.entities.Reservation;
 import dat3.car.reservations.factories.ReservationsFactory;
 import dat3.car.cars.repositories.ICarRepository;
 import dat3.car.members.repositories.IMemberRepository;
-import dat3.car.repository.IReservationRepository;
+import dat3.car.reservations.repositories.IReservationRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
