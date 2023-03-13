@@ -5,7 +5,7 @@ import dat3.car.config.dbInit.cars.Ford.FordRS2000;
 import dat3.car.config.dbInit.cars.Lada.Lada500Classic;
 import dat3.car.config.dbInit.cars.Nissan.NissanShitbox;
 import dat3.car.config.dbInit.cars.VW.VWID4;
-import dat3.car.entities.cars.Car;
+import dat3.car.cars.entities.Car;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
