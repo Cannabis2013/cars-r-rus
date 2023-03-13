@@ -1,7 +1,7 @@
 package dat3.car.members;
 
 import dat3.car.members.builders.MemberTestBuilder;
-import dat3.car.repository.IMemberRepository;
+import dat3.car.members.repositories.IMemberRepository;
 import org.junit.jupiter.api.*;
 import org.opentest4j.AssertionFailedError;
 import org.springframework.beans.factory.annotation.Autowired;

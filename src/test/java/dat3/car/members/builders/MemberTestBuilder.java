@@ -1,6 +1,6 @@
 package dat3.car.members.builders;
 
-import dat3.car.entities.members.Member;
+import dat3.car.members.entities.Member;
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
 

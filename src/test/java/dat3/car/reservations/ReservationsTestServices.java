@@ -1,18 +1,18 @@
 package dat3.car.reservations;
 
 import dat3.car.cars.CarsDbInitializor;
-import dat3.car.entities.reservations.Reservation;
-import dat3.car.factories.reservations.ReservationsFactory;
+import dat3.car.reservations.entities.Reservation;
+import dat3.car.reservations.factories.ReservationsFactory;
 import dat3.car.members.MembersDbInitializor;
-import dat3.car.repository.ICarRepository;
-import dat3.car.repository.IMemberRepository;
+import dat3.car.cars.repositories.ICarRepository;
+import dat3.car.members.repositories.IMemberRepository;
 import dat3.car.repository.IReservationRepository;
-import dat3.car.services.Http.HttpJsonResult;
-import dat3.car.services.reservations.CarReservationManager;
+import dat3.car.reservations.services.CarReservation;
+import dat3.car.shared.services.Http.HttpJsonResult;
+import dat3.car.reservations.services.CarReservationManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class ReservationsTestServices {
     }
 
     protected CarReservationManager manager(){
-        var reservation = new dat3.car.services.reservations.CarReservation(_reservations,_factory, _cars, _members);
+        var reservation = new CarReservation(_reservations,_factory, _cars, _members);
         return new CarReservationManager(reservation,new HttpJsonResult(),_factory, _reservations);
     }
 

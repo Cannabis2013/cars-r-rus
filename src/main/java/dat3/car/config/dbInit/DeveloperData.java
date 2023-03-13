@@ -2,8 +2,8 @@ package dat3.car.config.dbInit;
 
 import dat3.car.config.dbInit.cars.CarBatchFactory;
 import dat3.car.config.dbInit.members.MemberBatchFactory;
-import dat3.car.repository.ICarRepository;
-import dat3.car.repository.IMemberRepository;
+import dat3.car.cars.repositories.ICarRepository;
+import dat3.car.members.repositories.IMemberRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;

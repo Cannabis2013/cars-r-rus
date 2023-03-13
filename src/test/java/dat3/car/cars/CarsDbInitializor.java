@@ -1,9 +1,8 @@
 package dat3.car.cars;
 
-import dat3.car.entities.cars.Car;
-import dat3.car.repository.ICarRepository;
+import dat3.car.cars.entities.Car;
+import dat3.car.cars.repositories.ICarRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.*;
 

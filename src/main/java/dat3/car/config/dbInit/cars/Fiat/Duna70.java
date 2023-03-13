@@ -1,6 +1,6 @@
 package dat3.car.config.dbInit.cars.Fiat;
 
-import dat3.car.entities.cars.Car;
+import dat3.car.cars.entities.Car;
 
 public class Duna70 {
     public Duna70() {

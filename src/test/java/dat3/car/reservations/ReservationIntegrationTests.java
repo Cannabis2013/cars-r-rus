@@ -1,7 +1,7 @@
 package dat3.car.reservations;
 
-import dat3.car.dto.reservations.ReservationRequest;
-import dat3.car.services.reservations.CarReservationManager;
+import dat3.car.reservations.dtos.ReservationRequest;
+import dat3.car.reservations.services.CarReservationManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

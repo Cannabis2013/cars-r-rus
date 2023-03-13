@@ -1,8 +1,8 @@
 package dat3.car.members;
 
-import dat3.car.entities.members.Member;
+import dat3.car.members.entities.Member;
 import dat3.car.members.builders.TESTMemberBatchFactory;
-import dat3.car.repository.IMemberRepository;
+import dat3.car.members.repositories.IMemberRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collections;

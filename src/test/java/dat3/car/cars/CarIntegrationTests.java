@@ -4,12 +4,12 @@ package dat3.car.cars;
     Tests that passes all layers
  */
 
-import dat3.car.Utils.ImageBase64Converter;
-import dat3.car.dto.cars.CarsAddRequest;
-import dat3.car.factories.cars.CarFactory;
-import dat3.car.repository.ICarRepository;
-import dat3.car.services.Http.HttpJsonResult;
-import dat3.car.services.cars.CarManager;
+import dat3.car.cars.factories.ImageBase64Converter;
+import dat3.car.cars.dtos.CarsAddRequest;
+import dat3.car.cars.factories.CarFactory;
+import dat3.car.cars.repositories.ICarRepository;
+import dat3.car.shared.services.Http.HttpJsonResult;
+import dat3.car.cars.services.CarManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

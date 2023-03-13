@@ -1,7 +1,7 @@
 package dat3.car.cars;
 
-import dat3.car.entities.cars.Car;
-import dat3.car.repository.ICarRepository;
+import dat3.car.cars.entities.Car;
+import dat3.car.cars.repositories.ICarRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
