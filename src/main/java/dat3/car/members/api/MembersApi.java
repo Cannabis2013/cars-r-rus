@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/members/")
+@CrossOrigin
 public class MembersApi {
     public MembersApi(MemberManager memberManager) {
         this.memberManager = memberManager;

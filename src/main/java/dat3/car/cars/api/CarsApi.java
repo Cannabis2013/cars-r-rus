@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cars")
+@CrossOrigin
 public class CarsApi {
     public CarsApi(CarManager carContext) {
         this._carManager = carContext;
