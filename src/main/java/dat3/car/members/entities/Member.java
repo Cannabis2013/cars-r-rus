@@ -1,5 +1,6 @@
 package dat3.car.members.entities;
 
+import dat3.car.reservations.entities.Reservation;
 import dat3.car.security.entities.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -39,7 +40,6 @@ public class Member extends User {
     @ElementCollection
     @JoinColumn(name = "member_favorite_color",referencedColumnName = "member_id")
     private final List<String> favoriteColors = new ArrayList<>();
-
     private int ranking;
 
     @CreationTimestamp

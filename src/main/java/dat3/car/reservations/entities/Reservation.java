@@ -5,6 +5,7 @@ import dat3.car.shared.entities.EntityModel;
 import dat3.car.cars.entities.Car;
 import dat3.car.members.entities.Member;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -27,7 +28,6 @@ public class Reservation extends EntityModel {
     @JoinColumn(name="car_id", nullable=false)
     private Car car;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="member_id", nullable=false)
-    private Member member;
+    @NotNull
+    private String memberId;
 }

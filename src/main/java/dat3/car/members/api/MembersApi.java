@@ -1,6 +1,5 @@
 package dat3.car.members.api;
 
-
 import dat3.car.members.dtos.MemberAddRequest;
 import dat3.car.members.dtos.MemberUpdateRequest;
 import dat3.car.members.services.MemberManager;

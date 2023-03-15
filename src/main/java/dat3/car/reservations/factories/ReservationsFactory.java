@@ -12,7 +12,7 @@ public class ReservationsFactory {
     public Reservation fromRequest(ReservationRequest request, Car car, Member member)
     {
         return Reservation.builder()
-                .member(member)
+                .memberId(member.getId())
                 .reservationStart(request.getReservationStart())
                 .reservationEnd(request.getReservationEnd())
                 .car(car)

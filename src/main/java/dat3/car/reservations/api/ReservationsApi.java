@@ -2,6 +2,7 @@ package dat3.car.reservations.api;
 
 import dat3.car.reservations.dtos.ReservationRequest;
 import dat3.car.reservations.services.CarReservationManager;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +13,15 @@ public class ReservationsApi {
         _reservationManager = carReservations;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/reservations")
     public ResponseEntity<String> all()
     {
         return _reservationManager.reservations();
+    }
+
+    @GetMapping("/memberReservations")
+    public ResponseEntity<String> all(@RequestParam String memberId){
+        return _reservationManager.reservations(memberId);
     }
 
     @GetMapping("/one")

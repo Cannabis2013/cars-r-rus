@@ -3,8 +3,6 @@ package dat3.car.cars.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.w3c.dom.stylesheets.LinkStyle;
-
 import java.util.List;
 import java.util.Map;
 
@@ -21,4 +19,5 @@ public class CarFetchResponse {
     private Map<String,String> features;
     private List<String> recommendations;
     private String description;
+    private boolean reserved;
 }

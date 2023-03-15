@@ -23,6 +23,12 @@ public class CarReservationManager {
         return _result.ok(response);
     }
 
+    public ResponseEntity<String> reservations(String memberId){
+        var reservations = _reservations.findByMemberId(memberId);
+        var response = reservations.stream().map(_factory::toResponse).toList();
+        return _result.ok(response);
+    }
+
     public ResponseEntity<String> reservation(String id){
         var reservation = _reservations.findById(id).orElse(null);
         if(reservation == null)
