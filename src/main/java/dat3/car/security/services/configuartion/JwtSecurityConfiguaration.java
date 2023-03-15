@@ -14,8 +14,8 @@ public class JwtSecurityConfiguaration implements HttpSecurityServices {
     @Override
     public void setupServices(HttpSecurity http) throws Exception {
         http.httpBasic(Customizer.withDefaults())
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling((exceptions) -> exceptions
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new CustomOAuth2AuthenticationEntryPoint())
                         .accessDeniedHandler(new CustomOAuth2AccessDeniedHandler())
                 )
