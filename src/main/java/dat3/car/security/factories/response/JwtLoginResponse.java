@@ -62,10 +62,10 @@ public class JwtLoginResponse implements LoginResponse<LoginRequest, TokenLoginR
         return encoder.encode(headerValues).getTokenValue();
     }
 
-    @Value("${app.token-issuer}")
+    @Value("${app.token.issuer}")
     private String tokenIssuer;
 
-    @Value("${app.token-expiration}")
+    @Value("${app.token.expiration}")
     private long tokenExpiration;
     private final AuthenticationManager authenticationManager;
 

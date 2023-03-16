@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "https://cars-frontend.mh2012.dk")
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/auth/")
 public class AuthenticationController {
