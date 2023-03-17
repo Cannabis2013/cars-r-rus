@@ -11,7 +11,7 @@ public class JwtTokenManager implements HttpSecretsManager {
         return tokenSecret;
     }
 
-    @Value("${app.secret-key}")
+    @Value("${app.secret.key}")
     public String tokenSecret;
 
 }
