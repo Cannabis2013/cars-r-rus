@@ -23,7 +23,7 @@ public class CarReservation {
     }
 
     public void reserve(ReservationRequest request) throws EntityNotFoundException, CarReserveFailedException {
-        var member = _members.findById(request.getMemberId()).orElseThrow(() -> new EntityNotFoundException("Member with given id not found"));
+        var member = _members.findByUsernameLike(request.getMemberName()).orElseThrow(() -> new EntityNotFoundException("Member with given id not found"));
         var car = _cars.findById(request.getCarId()).orElseThrow(() -> new EntityNotFoundException("Car with given id not found"));
         addToDatabase(car,member,request);
     }

@@ -5,9 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 
 @AllArgsConstructor
@@ -15,7 +13,7 @@ import java.util.Objects;
 @Getter
 public final class ReservationRequest {
     private String carId;
-    private String memberId;
+    private String memberName;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationStart;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

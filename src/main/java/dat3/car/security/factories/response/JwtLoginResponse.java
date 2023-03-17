@@ -58,8 +58,8 @@ public class JwtLoginResponse implements LoginResponse<LoginRequest, TokenLoginR
 
     private String generateToken(JwtClaimsSet claims){
         var jwsHeader = JwsHeader.with(() -> "HS256").type("JWT").build();
-        var headerValues = JwtEncoderParameters.from(jwsHeader, claims);
-        return encoder.encode(headerValues).getTokenValue();
+        var headerParameters = JwtEncoderParameters.from(jwsHeader, claims);
+        return encoder.encode(headerParameters).getTokenValue();
     }
 
     @Value("${app.token-issuer}")

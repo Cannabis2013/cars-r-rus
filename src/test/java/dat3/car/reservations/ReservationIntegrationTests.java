@@ -38,7 +38,7 @@ public class ReservationIntegrationTests extends ReservationsTestServices {
         var member = _membersInitializor.randomMember(_members);
         var start = LocalDateTime.now();
         var end = start.plusDays(5);
-        var res = new ReservationRequest(car.getId(),member.getId(),start,end);
+        var res = new ReservationRequest(car.getId(),member.getUsername(),start,end);
         return _reservationsManager.reserve(res);
     }
 
