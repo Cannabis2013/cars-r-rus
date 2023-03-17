@@ -11,7 +11,7 @@ public class NissanShitbox {
                 this car is not for the faint of hearth. But it comes with a low price.
                 """);
         updateFeatures();
-        _car.setImageFilePath("src/main/java/dat3/car/config/dbInit/cars/Nissan/nissan_shitbox_1983.png");
+        _car.setImageFilePath("src/main/resources/static/nissan_shitbox_1983.png");
     }
 
     public Car getCar() {

@@ -14,7 +14,7 @@ public class Lada500Classic {
                 for a picnic or just a little nice ride out in the blue.
                 """);
         _car.setPricePrDay(750);
-        _car.setImageFilePath("src/main/java/dat3/car/config/dbInit/cars/Lada/lada_500_classic.jpg");
+        _car.setImageFilePath("src/main/resources/static/lada_500_classic.jpg");
     }
 
     public Car getCar() {
