@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/reservations")
+@CrossOrigin
 public class ReservationsApi {
     public ReservationsApi(CarReservationManager carReservations) {
         _reservationManager = carReservations;
     }
 
-    @GetMapping("/reservations")
+    @GetMapping("/all")
     public ResponseEntity<String> all()
     {
         return _reservationManager.reservations();
