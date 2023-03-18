@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface IMemberRepository extends JpaRepository<Member,String> {
+    Optional<Member> findByIdLike(String id);
     Optional<Member> findByUsernameLike(String username);
 }

@@ -2,7 +2,6 @@ package dat3.car.reservations.api;
 
 import dat3.car.reservations.dtos.ReservationRequest;
 import dat3.car.reservations.services.CarReservationManager;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +20,8 @@ public class ReservationsApi {
     }
 
     @GetMapping("/memberReservations")
-    public ResponseEntity<String> all(@RequestParam String memberId){
-        return _reservationManager.reservations(memberId);
+    public ResponseEntity<String> all(@RequestParam String memberName){
+        return _reservationManager.reservations(memberName);
     }
 
     @GetMapping("/one")

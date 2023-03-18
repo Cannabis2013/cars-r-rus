@@ -30,7 +30,7 @@ public class ReservationsTestServices {
 
     protected CarReservationManager manager(){
         var reservation = new CarReservation(_reservations,_factory, _cars, _members);
-        return new CarReservationManager(reservation,new HttpJsonResult(),_factory, _reservations);
+        return new CarReservationManager(reservation,new HttpJsonResult(),_factory, _reservations, _members);
     }
 
     protected Reservation randomRerservation(){

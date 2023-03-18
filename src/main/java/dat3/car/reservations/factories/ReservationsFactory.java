@@ -1,5 +1,6 @@
 package dat3.car.reservations.factories;
 
+import dat3.car.members.repositories.IMemberRepository;
 import dat3.car.reservations.dtos.ReservationRequest;
 import dat3.car.reservations.dtos.ReservationResponse;
 import dat3.car.cars.entities.Car;
@@ -19,12 +20,17 @@ public class ReservationsFactory {
                 .build();
     }
 
-    public ReservationResponse toResponse(Reservation reservation)
+    public ReservationResponse toResponse(Reservation reservation, Member member)
     {
+        return response(reservation,member);
+    }
+
+    private ReservationResponse response(Reservation reservation, Member member){
         return ReservationResponse.builder()
                 .reservationId(reservation.getId())
                 .carId(reservation.getCar().getId())
                 .brand(reservation.getCar().getBrand())
+                .memberName(member.getUsername())
                 .model(reservation.getCar().getModel())
                 .reservationStart(reservation.getReservationStart())
                 .reservationEnd(reservation.getReservationEnd())
