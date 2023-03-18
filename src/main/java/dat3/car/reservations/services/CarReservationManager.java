@@ -33,7 +33,7 @@ public class CarReservationManager {
     public ResponseEntity<String> reservations(String memberName){
         var member = _members.findByUsernameLike(memberName).orElse(null);
         if(member == null)
-            return _result.notFound("Member not found");
+            return _result.notFound("Associated member not found");
         var reservations = _reservations.findByMemberId(member.getId());
         var response = reservations.stream().map(r -> _factory.toResponse(r,member)).toList();
         return _result.ok(response);
