@@ -14,14 +14,14 @@ public class MemberBatchFactory {
 
     public List<Member> batch()
     {
-        var members = new ArrayList<Member>() {
+        return new ArrayList<Member>() {
             {
                 add(_factory.mh2012());
                 add(_factory.bikerJens());
                 add(_factory.loneLiderlig());
+                add(_factory.chernobog());
             }
         };
-        return members;
     }
 
     private final ConfigPredefinedMembers _factory;

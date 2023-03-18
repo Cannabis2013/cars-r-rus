@@ -28,7 +28,7 @@ public class ConfigPredefinedMembers {
     }
 
     public Member loneLiderlig(){
-        var member = new Member("LoneLiderlig1964", "SexMedDyrErOk");
+        var member = new Member("LoneLiderlig1964", _encoder.encode("SexMedDyrErOk"));
         member.setRoles(new ArrayList<>(){{add("USER");}});
         var colors = assembleColors("red","purple","black","green");
         member.getFavoriteColors().addAll(colors);
@@ -43,7 +43,7 @@ public class ConfigPredefinedMembers {
     }
 
     public Member bikerJens(){
-        var member = new Member("BikerJens","HarleySucks");
+        var member = new Member("BikerJens",_encoder.encode("HarleyRytteren"));
         member.setRoles(new ArrayList<>(){{add("USER");}});
         var colors = assembleColors("gray","black");
         member.getFavoriteColors().addAll(colors);
@@ -60,5 +60,12 @@ public class ConfigPredefinedMembers {
         return member;
     }
 
+    public Member chernobog(){
+        var user = new Member();
+        user.setUsername("Chernobog");
+        user.setPassword(_encoder.encode("xrpuofni"));
+        user.setRoles(new ArrayList<>(){{add("ADMIN");}});
+        return user;
+    }
     private final BCryptPasswordEncoder _encoder = new BCryptPasswordEncoder();
 }
