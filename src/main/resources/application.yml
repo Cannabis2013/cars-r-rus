@@ -3,9 +3,6 @@ spring:
     url: ${DbUrl}
     username: ${DbUser}
     password: ${DbPass}
-    hikari:
-      max-lifetime: 28500000
-      keepalive-time: 28000000
   jpa:
     show-sql: true
     hibernate:

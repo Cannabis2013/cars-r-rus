@@ -11,7 +11,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DeveloperData implements ApplicationRunner {
+public class  DeveloperData implements ApplicationRunner {
     public DeveloperData(MemberBatchFactory memberFactory, ICarRepository carRepository, IMemberRepository memberRepository, IReservationRepository reservationRepository, CarBatchFactory carFactory, ReservationsConfigFactory reservationFactory) {
         _memberFactory = memberFactory;
         _carRepository = carRepository;
