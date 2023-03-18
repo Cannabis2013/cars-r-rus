@@ -4,8 +4,8 @@ spring:
     username: ${DbUser}
     password: ${DbPass}
     hikari:
-      max-lifetime: 28000000
-      keepalive-time: 27500000
+      max-lifetime: 600000
+      keepalive-time: 500000
   jpa:
     show-sql: true
     hibernate:
